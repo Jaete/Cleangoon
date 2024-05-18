@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cytg6jnj3iky4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
+[ext_resource type="Texture2D" uid="uid://dn6q65jm2jwhp" path="res://Assets/Sprites/limpa-i-989.png" id="2_kb6fu"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="3_ljymo"]
+[ext_resource type="Script" path="res://Scripts/Helpers/AnimationHelper.gd" id="4_7ah1g"]
+[ext_resource type="Script" path="res://Scripts/DEBUG/Label.gd" id="5_o0sma"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
+friction = 0.25
+bounce = 0.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dl8p"]
+radius = 20.0
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2(307, 99)
+physics_material_override = SubResource("PhysicsMaterial_k4xc7")
+lock_rotation = true
+script = ExtResource("1_ho8sk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 5)
+shape = SubResource("CircleShape2D_5dl8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kb6fu")
+offset = Vector2(0, 0.905)
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource("3_ljymo")
+
+[node name="AnimationHelper" type="Node" parent="."]
+script = ExtResource("4_7ah1g")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("5_o0sma")

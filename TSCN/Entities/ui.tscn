@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3kxbhkefjdle"]
+
+[ext_resource type="PackedScene" uid="uid://d080a52g4sov1" path="res://TSCN/Entities/health_bar.tscn" id="1_8p76d"]
+[ext_resource type="Texture2D" uid="uid://bmsmenlkchl6l" path="res://Assets/UI/Ind_Stamina_pip.png" id="2_ng0c3"]
+[ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="3_cpx5k"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="4_kx2gd"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" parent="Control" instance=ExtResource("1_8p76d")]
+custom_minimum_size = Vector2(80, 300)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -342.0
+offset_right = 122.0
+offset_bottom = -42.0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = -97.0
+offset_right = 188.0
+offset_bottom = -57.0
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Control"]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_ng0c3")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control/Control"]
+position = Vector2(0, -38)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_ng0c3")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Control/Control"]
+position = Vector2(0, -76)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_ng0c3")
+flip_h = true
+
+[node name="MainPanel03" type="Sprite2D" parent="Control"]
+position = Vector2(1025, 66)
+scale = Vector2(0.671329, 0.671329)
+texture = ExtResource("3_cpx5k")
+
+[node name="Label" type="Label" parent="Control/MainPanel03"]
+offset_left = -143.0
+offset_top = -19.3646
+offset_right = 145.0
+offset_bottom = 47.6354
+theme_override_fonts/font = ExtResource("4_kx2gd")
+theme_override_font_sizes/font_size = 24
+text = "Coletados: 0"

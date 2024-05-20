@@ -1,26 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://cytg6jnj3iky4"]
+[gd_scene load_steps=6 format=3 uid="uid://cytg6jnj3iky4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
 [ext_resource type="Texture2D" uid="uid://dn6q65jm2jwhp" path="res://Assets/Sprites/limpa-i-989.png" id="2_kb6fu"]
+[ext_resource type="Script" path="res://Scripts/DEBUG/Label.gd" id="3_asste"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
-friction = 0.25
+friction = 0.5
 bounce = 0.4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5dl8p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvl24"]
 radius = 20.0
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
 position = Vector2(307, 99)
 physics_material_override = SubResource("PhysicsMaterial_k4xc7")
 lock_rotation = true
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_ho8sk")
 sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 5)
-shape = SubResource("CircleShape2D_5dl8p")
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_cvl24")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("2_kb6fu")
 offset = Vector2(0, 0.905)
+
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -21.0
+offset_top = -54.0
+offset_right = 19.0
+offset_bottom = -14.0
+
+[node name="Label" type="Label" parent="Debug"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_asste")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

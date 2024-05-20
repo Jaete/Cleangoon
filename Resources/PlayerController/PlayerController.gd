@@ -30,6 +30,8 @@ func get_horizontal_movement():
 		horizonal_movement = LEFT
 	elif Input.is_action_pressed("Move_Right"):
 		horizonal_movement = RIGHT
+	elif !Input.is_action_pressed("Move_Left") && !Input.is_action_pressed("Move_Right"):
+		horizonal_movement = STOP
 
 func check_boost():
 	if Input.is_action_pressed("Boost"):
@@ -37,7 +39,7 @@ func check_boost():
 	else:
 		is_boosting = false
 
-func is_stopped():
+func is_stopped() -> bool:
 	if !Input.is_anything_pressed():
-		vertical_movement = STOP
-		horizonal_movement = STOP
+		return true
+	return false

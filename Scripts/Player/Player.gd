@@ -25,4 +25,14 @@ func _physics_process(delta):
 		animation.fall(sprite)
 	else:
 		animation.align(sprite)
+	if controller.is_stopped() && abs(linear_velocity.x) >= 0.1 && get_contact_count() > 0:
+		sleeping = true
+	else:
+		sleeping = false
 	pass
+
+func _process(delta):
+	pass
+	
+func _on_body_entered(body):
+	pass # Replace with function body.

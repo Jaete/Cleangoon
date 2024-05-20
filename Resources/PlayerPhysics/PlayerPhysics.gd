@@ -12,7 +12,12 @@ const STOP: float = 0.0
 
 func move(player: Player, is_boosting: bool, h_movement: int, v_movement: int):
 	if abs(player.linear_velocity.x) >= (H_MAX_SPEED):
-		player.linear_velocity.x = H_MAX_SPEED * h_movement
+		if player.controller.horizonal_movement == 0 && player.linear_velocity.x >= 0:
+			player.linear_velocity.x -= H_MAX_SPEED * player.get_physics_process_delta_time()
+		elif player.controller.horizonal_movement == 0 && player.linear_velocity.x <= 0:
+			player.linear_velocity.x += H_MAX_SPEED * player.get_physics_process_delta_time()
+		else:
+			player.linear_velocity.x = H_MAX_SPEED * h_movement
 	else:
 		player.apply_central_force(Vector2(h_movement * H_ACCELERATION, 0))
 	if v_movement == 1:

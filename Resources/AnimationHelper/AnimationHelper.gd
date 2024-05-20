@@ -2,9 +2,9 @@ class_name AnimationHelper
 extends Resource
 
 func check_direction(player: Player, sprite: Sprite2D):
-	if player.linear_velocity.x < 0:
+	if player.controller.horizonal_movement < 0:
 		sprite.flip_h = true
-	elif player.linear_velocity.x > 0:
+	elif player.controller.horizonal_movement > 0:
 		sprite.flip_h = false
 	pass
 

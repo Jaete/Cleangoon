@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerPhysics" load_steps=2 format=3 uid="uid://502osudyjdp8"]
+
+[ext_resource type="Script" path="res://Resources/PlayerPhysics/PlayerPhysics.gd" id="1_j1d4o"]
+
+[resource]
+script = ExtResource("1_j1d4o")
+V_MAX_SPEED = 100.0
+V_ACCELERATION = 250.0
+H_MAX_SPEED = 100.0
+H_ACCELERATION = 150.0
+LEFT = -1.0
+RIGHT = 1.0
+STOP = 0.0

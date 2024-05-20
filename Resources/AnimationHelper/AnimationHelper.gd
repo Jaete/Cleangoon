@@ -1,17 +1,14 @@
 class_name AnimationHelper
-extends Node
+extends Resource
 
-@onready var player: Player = $".."
-@onready var sprite: Sprite2D = $"../Sprite2D"
-
-func check_direction():
+func check_direction(player: Player, sprite: Sprite2D):
 	if player.linear_velocity.x < 0:
 		sprite.flip_h = true
 	elif player.linear_velocity.x > 0:
 		sprite.flip_h = false
 	pass
 
-func rise():
+func rise(sprite: Sprite2D):
 	if sprite.is_flipped_h():
 		if sprite.rotation_degrees < 15:
 			sprite.rotation_degrees += 1
@@ -19,7 +16,7 @@ func rise():
 		if sprite.rotation_degrees > -15:
 			sprite.rotation_degrees -= 1
 
-func fall():
+func fall(sprite: Sprite2D):
 	if !sprite.is_flipped_h():
 		if sprite.rotation_degrees < 15:
 			sprite.rotation_degrees += 1
@@ -27,5 +24,5 @@ func fall():
 		if sprite.rotation_degrees > -15:
 			sprite.rotation_degrees -= 1
 
-func align():
+func align(sprite: Sprite2D):
 	sprite.rotation_degrees = 0

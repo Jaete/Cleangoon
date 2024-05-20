@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AnimationHelper" load_steps=2 format=3 uid="uid://bjvg66l47ddex"]
+
+[ext_resource type="Script" path="res://Resources/AnimationHelper/AnimationHelper.gd" id="1_oqul8"]
+
+[resource]
+script = ExtResource("1_oqul8")

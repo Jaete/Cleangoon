@@ -1,6 +1,5 @@
 extends Label
 
-@onready var cont: PlayerController = $"../PlayerController"
 @onready var pl: Player = $".."
 
 func _process(delta):

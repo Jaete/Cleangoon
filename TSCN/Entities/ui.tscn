@@ -16,15 +16,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HP" parent="Control" instance=ExtResource("1_8p76d")]
+
 custom_minimum_size = Vector2(60, 200)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 42.0
-offset_top = -342.0
-offset_right = 122.0
-offset_bottom = -42.0
+offset_left = 58.0
+offset_top = -267.0
+offset_right = 118.0
+offset_bottom = -67.0
 grow_vertical = 0
 
 [node name="Boost" type="Control" parent="Control"]

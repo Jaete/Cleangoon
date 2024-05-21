@@ -15,7 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureProgressBar" parent="Control" instance=ExtResource("1_8p76d")]
+[node name="HP" parent="Control" instance=ExtResource("1_8p76d")]
+
 custom_minimum_size = Vector2(60, 200)
 layout_mode = 1
 anchors_preset = 2
@@ -27,7 +28,7 @@ offset_right = 118.0
 offset_bottom = -67.0
 grow_vertical = 0
 
-[node name="Control" type="Control" parent="Control"]
+[node name="Boost" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -38,32 +39,56 @@ offset_right = 188.0
 offset_bottom = -57.0
 grow_vertical = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/Control"]
+[node name="1" type="Sprite2D" parent="Control/Boost"]
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("2_ng0c3")
 flip_h = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Control/Control"]
+[node name="2" type="Sprite2D" parent="Control/Boost"]
 position = Vector2(0, -38)
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("2_ng0c3")
 flip_h = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="Control/Control"]
+[node name="3" type="Sprite2D" parent="Control/Boost"]
 position = Vector2(0, -76)
 rotation = 1.5708
 scale = Vector2(3, 3)
 texture = ExtResource("2_ng0c3")
 flip_h = true
 
-[node name="MainPanel03" type="Sprite2D" parent="Control"]
-position = Vector2(1025, 66)
+[node name="Counters" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -391.0
+offset_bottom = 227.0
+grow_horizontal = 0
+
+[node name="Money" type="Sprite2D" parent="Control/Counters"]
+position = Vector2(297.977, 132)
+scale = Vector2(0.441104, 0.339161)
+texture = ExtResource("3_cpx5k")
+
+[node name="Label" type="Label" parent="Control/Counters/Money"]
+offset_left = -135.131
+offset_top = -2.94846
+offset_right = 184.869
+offset_bottom = 74.0515
+theme_override_fonts/font = ExtResource("4_kx2gd")
+theme_override_font_sizes/font_size = 28
+text = "R$ 9999,99"
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelProgress" type="Sprite2D" parent="Control/Counters"]
+position = Vector2(264.371, 69)
 scale = Vector2(0.671329, 0.671329)
 texture = ExtResource("3_cpx5k")
 
-[node name="Label" type="Label" parent="Control/MainPanel03"]
+[node name="Label" type="Label" parent="Control/Counters/LevelProgress"]
 offset_left = -143.0
 offset_top = -19.3646
 offset_right = 145.0

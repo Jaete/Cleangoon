@@ -1,8 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://cytg6jnj3iky4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
+[ext_resource type="Resource" uid="uid://502osudyjdp8" path="res://Resources/PlayerPhysics/PlayerPhysics.tres" id="2_02aco"]
 [ext_resource type="Texture2D" uid="uid://dn6q65jm2jwhp" path="res://Assets/Sprites/limpa-i-989.png" id="2_kb6fu"]
 [ext_resource type="Script" path="res://Scripts/DEBUG/Label.gd" id="3_asste"]
+[ext_resource type="Resource" uid="uid://3bcj6bpysgo7" path="res://Resources/PlayerController/PlayerController.tres" id="3_vg3af"]
+[ext_resource type="Resource" uid="uid://bjvg66l47ddex" path="res://Resources/AnimationHelper/AnimationHelper.tres" id="4_rrypg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
 friction = 0.5
@@ -18,6 +21,9 @@ lock_rotation = true
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_ho8sk")
+physics = ExtResource("2_02aco")
+controller = ExtResource("3_vg3af")
+animation = ExtResource("4_rrypg")
 sprite = NodePath("Sprite2D")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]

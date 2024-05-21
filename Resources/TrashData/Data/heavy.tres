@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TrashData" load_steps=2 format=3 uid="uid://dltl8cfw7kwhb"]
+
+[ext_resource type="Script" path="res://Resources/TrashData/TrashData.gd" id="1_htbbx"]
+
+[resource]
+script = ExtResource("1_htbbx")
+is_heavy = true
+is_chemical = false
+is_common = false

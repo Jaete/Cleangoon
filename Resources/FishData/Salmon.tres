@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishData" load_steps=2 format=3 uid="uid://bsvfgg4iop3es"]
+
+[ext_resource type="Script" path="res://Resources/FishData/FishData.gd" id="1_k8jet"]
+
+[resource]
+script = ExtResource("1_k8jet")
+salmon = true
+mudfish = false
+sight_offset_x = 6
+weight = 0.0
+horizontal_speed = 8.0
+vertical_speed = 9.0

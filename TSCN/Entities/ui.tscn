@@ -16,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HP" parent="Control" instance=ExtResource("1_8p76d")]
-
 custom_minimum_size = Vector2(60, 200)
 layout_mode = 1
 anchors_preset = 2

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmpr6nn6feapk"]
+
+[ext_resource type="Script" path="res://Scripts/Fish/Fish.gd" id="1_udpjn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ogsb8"]
+friction = 0.2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ya2ni"]
+height = 37.9442
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3g25"]
+
+[node name="Fish" type="RigidBody2D" node_paths=PackedStringArray("sprite", "mouth_shape", "sight")]
+physics_material_override = SubResource("PhysicsMaterial_ogsb8")
+script = ExtResource("1_udpjn")
+sprite = NodePath("Sprite")
+mouth_shape = NodePath("Mouth/Shape")
+sight = NodePath("Sight/CollisionPolygon2D")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+top_level = true
+position = Vector2(3, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ya2ni")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-6, -2)
+rotation = 0.750492
+scale = Vector2(0.5, 0.5)
+
+[node name="Mouth" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Mouth"]
+position = Vector2(22, -2)
+shape = SubResource("CircleShape2D_v3g25")
+
+[node name="Sight" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight"]
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight"]
+[connection signal="body_exited" from="Sight" to="." method="_on_lost_sight"]

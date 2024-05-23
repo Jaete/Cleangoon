@@ -1,13 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnamtpdl1nyu4"]
+[gd_scene load_steps=8 format=3 uid="uid://dnamtpdl1nyu4"]
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
-[ext_resource type="PackedScene" uid="uid://cytg6jnj3iky4" path="res://TSCN/Entities/player.tscn" id="2_d03b0"]
-[ext_resource type="Script" path="res://Resources/PlayerPhysics/PlayerPhysics.gd" id="3_ug6ue"]
-[ext_resource type="Script" path="res://Resources/PlayerController/PlayerController.gd" id="4_8jihy"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
-[ext_resource type="Resource" uid="uid://cg5bhkxvsmw8h" path="res://Resources/PlayerData/PlayerData.tres" id="6_jpv58"]
-[ext_resource type="PackedScene" uid="uid://cmpr6nn6feapk" path="res://TSCN/Entities/fish.tscn" id="10_2rp4f"]
-[ext_resource type="Resource" uid="uid://bsvfgg4iop3es" path="res://Resources/FishData/Salmon.tres" id="11_3gnft"]
+[ext_resource type="PackedScene" uid="uid://ctv4ao3whr30o" path="res://TSCN/Entities/trash.tscn" id="7_45d0x"]
+[ext_resource type="Resource" uid="uid://cd248grsux1qa" path="res://Resources/TrashData/Data/common.tres" id="8_dae1t"]
+[ext_resource type="Resource" uid="uid://dltl8cfw7kwhb" path="res://Resources/TrashData/Data/heavy.tres" id="9_4ltoc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeuvl"]
 size = Vector2(1215, 188)
@@ -15,22 +12,9 @@ size = Vector2(1215, 188)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lucq3"]
 size = Vector2(767, 335)
 
-[sub_resource type="Resource" id="Resource_4rwqx"]
-script = ExtResource("3_ug6ue")
-V_MAX_SPEED = 100.0
-V_ACCELERATION = 250.0
-H_MAX_SPEED = 100.0
-H_ACCELERATION = 150.0
-
-[sub_resource type="Resource" id="Resource_xphff"]
-script = ExtResource("4_8jihy")
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3crxn"]
-outlines = Array[PackedVector2Array]([PackedVector2Array(208, -1, 977, -1, 977, 335, 208, 335)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[node name="TutorialLevel" type="Node2D"]
+[node name="Level" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(-375, -102)
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(411, 314)
@@ -67,14 +51,14 @@ gravity_space_override = 3
 position = Vector2(591.5, 167.5)
 shape = SubResource("RectangleShape2D_lucq3")
 
-[node name="Player" parent="." instance=ExtResource("2_d03b0")]
-physics = SubResource("Resource_4rwqx")
-controller = SubResource("Resource_xphff")
-data = ExtResource("6_jpv58")
+[node name="Trash" parent="." instance=ExtResource("7_45d0x")]
+position = Vector2(568, 159)
+trash_data = ExtResource("8_dae1t")
 
-[node name="Fish" parent="." instance=ExtResource("10_2rp4f")]
-position = Vector2(474, 173)
-fish_data = ExtResource("11_3gnft")
+[node name="Trash2" parent="." instance=ExtResource("7_45d0x")]
+position = Vector2(488, 217)
+trash_data = ExtResource("8_dae1t")
 
-[node name="Navigation" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_3crxn")
+[node name="Trash3" parent="." instance=ExtResource("7_45d0x")]
+position = Vector2(533, 265)
+trash_data = ExtResource("9_4ltoc")

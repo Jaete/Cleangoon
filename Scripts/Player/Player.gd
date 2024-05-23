@@ -1,6 +1,9 @@
 class_name Player
 extends RigidBody2D
 
+signal player_grabbed_trash()
+signal player_released_trash()
+
 @export_category("Physics Movement")
 @export var physics: PlayerPhysics
 @export_category("Player Controller")
@@ -10,6 +13,9 @@ extends RigidBody2D
 @export var sprite: Sprite2D
 @export_category("Player Data")
 @export var data: PlayerData
+
+var carrying_trash: bool = false
+var trash_carried: Trash
 
 func _ready():
 	mass = 0.5
@@ -29,6 +35,14 @@ func _physics_process(delta):
 		sleeping = true
 	else:
 		sleeping = false
+	if controller.input_action == controller.GRAB && carrying_trash:
+		carrying_trash = false
+		player_released_trash.emit(trash_carried)
+	elif controller.input_action == controller.GRAB && !carrying_trash:
+		player_grabbed_trash.emit()
+		carrying_trash = true
+		controller.get_input()
+	
 	pass
 
 func _process(delta):

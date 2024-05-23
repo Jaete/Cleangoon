@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnamtpdl1nyu4"]
+[gd_scene load_steps=9 format=3 uid="uid://dnamtpdl1nyu4"]
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
+[ext_resource type="PackedScene" uid="uid://utivs6e57b53" path="res://TSCN/Entities/deliver_pont.tscn" id="6_faido"]
 [ext_resource type="PackedScene" uid="uid://ctv4ao3whr30o" path="res://TSCN/Entities/trash.tscn" id="7_45d0x"]
 [ext_resource type="Resource" uid="uid://cd248grsux1qa" path="res://Resources/TrashData/Data/common.tres" id="8_dae1t"]
 [ext_resource type="Resource" uid="uid://dltl8cfw7kwhb" path="res://Resources/TrashData/Data/heavy.tres" id="9_4ltoc"]
@@ -62,3 +63,6 @@ trash_data = ExtResource("8_dae1t")
 [node name="Trash3" parent="." instance=ExtResource("7_45d0x")]
 position = Vector2(533, 265)
 trash_data = ExtResource("9_4ltoc")
+
+[node name="DeliverPoint" parent="." instance=ExtResource("6_faido")]
+position = Vector2(589, 0)

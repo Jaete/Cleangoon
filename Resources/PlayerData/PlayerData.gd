@@ -12,7 +12,8 @@ var money: int = 0
 var trash_collected: int = 0
 var current_upgrades: Array[int] = []
 
-func add_money():
+func add_money(quantity: int):
+	money += quantity
 	pass
 
 func remove_money(quantity: int):

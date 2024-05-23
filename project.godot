@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 [autoload]
 
 Ui="*res://TSCN/Entities/ui.tscn"
-TrashManager="*res://TSCN/Entities/trash_collector.tscn"
+GarbageManager="*res://TSCN/Entities/trash_collector.tscn"
 Player_="*res://TSCN/Entities/player.tscn"
 
 [input]

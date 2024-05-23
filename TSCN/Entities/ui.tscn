@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3kxbhkefjdle"]
+[gd_scene load_steps=7 format=3 uid="uid://d3kxbhkefjdle"]
 
 [ext_resource type="PackedScene" uid="uid://d080a52g4sov1" path="res://TSCN/Entities/health_bar.tscn" id="1_8p76d"]
 [ext_resource type="Texture2D" uid="uid://bmsmenlkchl6l" path="res://Assets/UI/Ind_Stamina_pip.png" id="2_ng0c3"]
 [ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="3_cpx5k"]
 [ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="4_kx2gd"]
+[ext_resource type="Script" path="res://Scripts/UI/TrashCounter.gd" id="5_0iit3"]
+[ext_resource type="Script" path="res://Scripts/UI/Money.gd" id="5_hg21p"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -80,6 +82,7 @@ offset_bottom = 74.0515
 theme_override_fonts/font = ExtResource("4_kx2gd")
 theme_override_font_sizes/font_size = 28
 text = "R$ 9999,99"
+script = ExtResource("5_hg21p")
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelProgress" type="Sprite2D" parent="Control/Counters"]
@@ -95,3 +98,4 @@ offset_bottom = 47.6354
 theme_override_fonts/font = ExtResource("4_kx2gd")
 theme_override_font_sizes/font_size = 24
 text = "Coletados: 0"
+script = ExtResource("5_0iit3")

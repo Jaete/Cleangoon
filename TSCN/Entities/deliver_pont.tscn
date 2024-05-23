@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://utivs6e57b53"]
+
+[ext_resource type="Script" path="res://Scripts/TrashCollector/deliver_pont.gd" id="1_rwljn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gj1og"]
+radius = 50.0
+
+[node name="DeliverPoint" type="Node2D"]
+script = ExtResource("1_rwljn")
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_gj1og")
+debug_color = Color(0, 0.639216, 0.368627, 0.419608)
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

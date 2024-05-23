@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cytg6jnj3iky4"]
+[gd_scene load_steps=10 format=3 uid="uid://cytg6jnj3iky4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
 [ext_resource type="Resource" uid="uid://502osudyjdp8" path="res://Resources/PlayerPhysics/PlayerPhysics.tres" id="2_02aco"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/DEBUG/Label.gd" id="3_asste"]
 [ext_resource type="Resource" uid="uid://3bcj6bpysgo7" path="res://Resources/PlayerController/PlayerController.tres" id="3_vg3af"]
 [ext_resource type="Resource" uid="uid://bjvg66l47ddex" path="res://Resources/AnimationHelper/AnimationHelper.tres" id="4_rrypg"]
+[ext_resource type="Resource" uid="uid://cg5bhkxvsmw8h" path="res://Resources/PlayerData/PlayerData.tres" id="5_74pwt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
 friction = 0.5
@@ -24,6 +25,7 @@ physics = ExtResource("2_02aco")
 controller = ExtResource("3_vg3af")
 animation = ExtResource("4_rrypg")
 sprite = NodePath("Sprite2D")
+data = ExtResource("5_74pwt")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
@@ -35,6 +37,7 @@ texture = ExtResource("2_kb6fu")
 offset = Vector2(0, 0.905)
 
 [node name="Debug" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -21.0

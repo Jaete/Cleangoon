@@ -30,6 +30,9 @@ func _physics_process(delta):
 		else:
 			global_position.x += 28
 		global_position.y += 28
+		var button: Sprite2D = get_node("UI_Interact_Button")
+		if button != null:
+			button.set_visible(false)
 
 func _on_body_entered(body):
 	if body is TileMap:

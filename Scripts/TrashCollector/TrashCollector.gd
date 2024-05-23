@@ -1,7 +1,5 @@
-class_name TrashCollector
+class_name TrashManager
 extends Node
-
-signal player_released_trash()
 
 @onready var ui: CanvasLayer = get_node("/root/Ui")
 @onready var player: Player = get_node("/root/Player_")
@@ -14,9 +12,12 @@ var pick_trash_button: PackedScene =  preload("res://TSCN/UI/ui_interact_button.
 var button_ui: Sprite2D
 var control: Control
 
+var collected_trash_on_level: int = 0
+
 func _ready():
 	player.player_grabbed_trash.connect(grab_trash)
 	player.player_released_trash.connect(release_trash)
+	player.player_delivered_trash.connect(deliver_trash)
 	trashes_nodes = get_tree().get_nodes_in_group("Trash")
 	for trash in trashes_nodes:
 		current_trash_active = trash
@@ -25,7 +26,13 @@ func _ready():
 		current_trash_active.player_dropped_trash.connect(release_trash)
 	current_trash_active = null
 	control = ui.get_child(0)
+	set_deliver_point()
 	pass
+
+func set_deliver_point():
+	var deliver_point: DeliverPoint = get_node("/root/Level/DeliverPoint")
+	deliver_point.player_entered_point.connect(set_possible_delivery)
+	deliver_point.player_left_point.connect(set_possible_delivery)
 
 func start_interaction_ui(trash: Trash):
 	if current_trash_active == null:
@@ -50,7 +57,10 @@ func end_interaction_ui(trash: Trash):
 			interactable_trashes.clear()
 			show_ui(current_trash_active)
 	else:
+		if is_instance_valid(button_ui):
+			button_ui.queue_free()
 		interactable_trashes.erase(trash)
+	pass
 
 func grab_trash():
 	current_trash_active.set_name("Grabbed_Trash")
@@ -70,5 +80,20 @@ func release_trash(_trash: Node2D):
 	trash.call_deferred("reparent", level)
 	pass
 
-func _process(delta):
+func set_possible_delivery(player: Player, action: String):
+	if player.carrying_trash && action == "Entering":
+		button_ui = pick_trash_button.instantiate()
+		player.add_child(button_ui)
+		button_ui.global_position.y -= 48 
+		player.about_to_deliver = true
+	elif action == "Leaving":
+		player.about_to_deliver = false
+		player.get_node("UI_Interact_Button").queue_free()
 	pass
+
+func deliver_trash(player: Player):
+	player.data.money += player.trash_carried.trash_data.reward_money
+	player.trash_carried.queue_free()
+	collected_trash_on_level += 1
+	player.about_to_deliver = false
+	

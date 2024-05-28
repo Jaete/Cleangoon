@@ -22,5 +22,6 @@ func initialize():
 	if mudfish:
 		sprite_texture = load("res://Assets/Sprites/Fish/Mudfish Large.png")
 		sight_polygon_right = load("res://Resources/FishData/Shapes/mudfish_sight_right.tres")
+		sight_polygon_left = load("res://Resources/FishData/Shapes/mudfish_sight_left.tres")
 		mouth_position = Vector2(22,-2)
 	pass

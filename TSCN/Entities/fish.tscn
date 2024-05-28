@@ -44,6 +44,7 @@ position = Vector2(24, -2)
 shape = SubResource("CircleShape2D_v3g25")
 
 [node name="Sight_Right" type="Area2D" parent="."]
+position = Vector2(0, -15)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight_Right"]
 
@@ -66,7 +67,6 @@ target_position = Vector2(22, 0)
 [node name="Sight_Left" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight_Left"]
-polygon = PackedVector2Array(-25, -11)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="Mouth" to="." method="_on_mouth_area_entered"]

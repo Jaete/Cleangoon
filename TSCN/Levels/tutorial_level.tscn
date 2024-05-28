@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnamtpdl1nyu4"]
+[gd_scene load_steps=15 format=3 uid="uid://dnamtpdl1nyu4"]
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
-[ext_resource type="PackedScene" uid="uid://utivs6e57b53" path="res://TSCN/Entities/deliver_pont.tscn" id="6_faido"]
+[ext_resource type="PackedScene" uid="uid://bkyu4j36vhaaf" path="res://TSCN/Entities/deliver_pont.tscn" id="6_faido"]
 [ext_resource type="PackedScene" uid="uid://ctv4ao3whr30o" path="res://TSCN/Entities/trash.tscn" id="7_45d0x"]
 [ext_resource type="PackedScene" uid="uid://cmpr6nn6feapk" path="res://TSCN/Entities/fish.tscn" id="7_qkx1s"]
 [ext_resource type="Resource" uid="uid://bsvfgg4iop3es" path="res://Resources/FishData/Salmon.tres" id="8_5apgq"]
 [ext_resource type="Resource" uid="uid://cd248grsux1qa" path="res://Resources/TrashData/Data/common.tres" id="8_dae1t"]
 [ext_resource type="Resource" uid="uid://dltl8cfw7kwhb" path="res://Resources/TrashData/Data/heavy.tres" id="9_4ltoc"]
 [ext_resource type="Resource" uid="uid://cyix644ynettq" path="res://Resources/FishData/Behaviour/Salmon.tres" id="9_u2nnd"]
+[ext_resource type="Resource" uid="uid://bavv3hnsenxk8" path="res://Resources/FishData/Mudfish.tres" id="10_qoc6u"]
+[ext_resource type="Resource" uid="uid://g0bgtfgfyjxg" path="res://Resources/FishData/Behaviour/Mudfish.tres" id="11_aehqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeuvl"]
 size = Vector2(1215, 188)
@@ -44,8 +46,10 @@ polygon = PackedVector2Array(224, 0, 224, 320, 960, 320, 960, 0, 1535, -1, 1535,
 
 [node name="Air" type="Area2D" parent="."]
 priority = 1
-gravity_space_override = 3
-gravity = 2800.0
+gravity_space_override = 1
+gravity = 3600.0
+linear_damp_space_override = 4
+linear_damp = 3.0
 
 [node name="Shape" type="CollisionShape2D" parent="Air"]
 position = Vector2(609, -93)
@@ -89,3 +93,8 @@ position = Vector2(589, 0)
 position = Vector2(621, 216)
 fish_data = ExtResource("8_5apgq")
 behaviour = ExtResource("9_u2nnd")
+
+[node name="Fish2" parent="." instance=ExtResource("7_qkx1s")]
+position = Vector2(256, 128)
+fish_data = ExtResource("10_qoc6u")
+behaviour = ExtResource("11_aehqe")

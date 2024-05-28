@@ -1,6 +1,9 @@
 class_name AnimationHelper
 extends Resource
 
+var flipped: bool = false
+var going_right: bool 
+
 func check_direction(player: Player, sprite: Sprite2D):
 	if player.controller.horizonal_movement < 0:
 		sprite.flip_h = true
@@ -26,3 +29,4 @@ func fall(sprite: Sprite2D):
 
 func align(sprite: Sprite2D):
 	sprite.rotation_degrees = 0
+	pass

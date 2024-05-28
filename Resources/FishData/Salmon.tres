@@ -9,4 +9,4 @@ mudfish = false
 sight_offset_x = 6
 weight = 0.0
 horizontal_speed = 8.0
-vertical_speed = 9.0
+vertical_speed = 200.0

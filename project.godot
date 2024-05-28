@@ -20,6 +20,10 @@ Ui="*res://TSCN/Entities/ui.tscn"
 GarbageManager="*res://TSCN/Entities/trash_collector.tscn"
 Player_="*res://TSCN/Entities/player.tscn"
 
+[dotnet]
+
+project/assembly_name="A4 Faculdade"
+
 [input]
 
 Move_Left={

@@ -15,6 +15,7 @@ signal player_delivered_trash()
 @export_category("Player Data")
 @export var data: PlayerData
 
+var nearby_trash: bool = false
 var carrying_trash: bool = false
 var trash_carried: Trash
 var about_to_deliver: bool
@@ -50,7 +51,7 @@ func check_for_actions():
 	if controller.input_action == controller.GRAB && carrying_trash:
 		carrying_trash = false
 		player_released_trash.emit(trash_carried)
-	elif controller.input_action == controller.GRAB && !carrying_trash:
+	elif controller.input_action == controller.GRAB && !carrying_trash && nearby_trash:
 		player_grabbed_trash.emit()
 		carrying_trash = true
 		controller.get_input()
@@ -59,6 +60,6 @@ func check_for_actions():
 
 func _process(delta):
 	pass
-	
+
 func _on_body_entered(body):
 	pass # Replace with function body.

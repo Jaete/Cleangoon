@@ -1,21 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmpr6nn6feapk"]
+[gd_scene load_steps=8 format=3 uid="uid://cmpr6nn6feapk"]
 
 [ext_resource type="Script" path="res://Scripts/Fish/Fish.gd" id="1_udpjn"]
+[ext_resource type="Script" path="res://Resources/AnimationHelper/AnimationHelper.gd" id="2_psy6l"]
+[ext_resource type="Script" path="res://Scripts/DEBUG/Label-Fish.gd" id="2_ssllj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ogsb8"]
 friction = 0.2
+absorbent = true
+
+[sub_resource type="Resource" id="Resource_kymop"]
+script = ExtResource("2_psy6l")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ya2ni"]
 height = 37.9442
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3g25"]
 
-[node name="Fish" type="RigidBody2D" node_paths=PackedStringArray("sprite", "mouth_shape", "sight")]
+[node name="Fish" type="RigidBody2D" node_paths=PackedStringArray("mouth_shape", "sight_shape_left", "sight_shape_right", "sight", "sprite")]
 physics_material_override = SubResource("PhysicsMaterial_ogsb8")
+lock_rotation = true
 script = ExtResource("1_udpjn")
-sprite = NodePath("Sprite")
 mouth_shape = NodePath("Mouth/Shape")
-sight = NodePath("Sight/CollisionPolygon2D")
+sight_shape_left = NodePath("Sight_Left/CollisionPolygon2D")
+sight_shape_right = NodePath("Sight_Right/CollisionPolygon2D")
+sight = NodePath("Sight_Right")
+animation = SubResource("Resource_kymop")
+sprite = NodePath("Sprite")
 
 [node name="Body" type="CollisionShape2D" parent="."]
 top_level = true
@@ -24,19 +34,41 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ya2ni")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-6, -2)
-rotation = 0.750492
-scale = Vector2(0.5, 0.5)
+rotation = -0.785398
+scale = Vector2(0.3, 0.3)
 
 [node name="Mouth" type="Area2D" parent="."]
 
 [node name="Shape" type="CollisionShape2D" parent="Mouth"]
-position = Vector2(22, -2)
+position = Vector2(24, -2)
 shape = SubResource("CircleShape2D_v3g25")
 
-[node name="Sight" type="Area2D" parent="."]
+[node name="Sight_Right" type="Area2D" parent="."]
+position = Vector2(0, -15)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight_Right"]
 
-[connection signal="body_entered" from="Sight" to="." method="_on_sight"]
-[connection signal="body_exited" from="Sight" to="." method="_on_lost_sight"]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_ssllj")
+
+[node name="Teste" type="RayCast2D" parent="."]
+position = Vector2(60, 0)
+target_position = Vector2(22, 0)
+
+[node name="Sight_Left" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sight_Left"]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Mouth" to="." method="_on_mouth_area_entered"]
+[connection signal="body_entered" from="Sight_Right" to="." method="_on_sight"]
+[connection signal="body_entered" from="Sight_Left" to="." method="_on_sight_left"]

@@ -46,12 +46,14 @@ func show_ui(trash: Trash):
 	trash.add_child(button_ui)
 	button_ui.global_position.y -= 48
 	current_trash_active = trash
+	player.nearby_trash = true
 
 func end_interaction_ui(trash: Trash):
 	if current_trash_active == trash:
 		if is_instance_valid(button_ui):
 			button_ui.queue_free()
 		current_trash_active = null
+		player.nearby_trash = false
 		if interactable_trashes.size() != 0:
 			current_trash_active = interactable_trashes[0]
 			interactable_trashes.clear()
@@ -60,6 +62,7 @@ func end_interaction_ui(trash: Trash):
 		if is_instance_valid(button_ui):
 			button_ui.queue_free()
 		interactable_trashes.erase(trash)
+		player.nearby_trash = true
 	pass
 
 func grab_trash():

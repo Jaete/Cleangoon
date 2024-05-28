@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d4igds3mq21cm"]
 
-[ext_resource type="Texture2D" uid="uid://dh1r6ct8rp73a" path="res://Assets/UI/Keyboard Letters and Symbols.png" id="1_l6b1x"]
+[ext_resource type="Texture2D" path="res://Assets/UI/Keyboard Letters and Symbols.png" id="1_l6b1x"]
 
 [node name="UI_Interact_Button" type="Sprite2D"]
 z_index = 2

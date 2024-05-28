@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishBehaviour" load_steps=2 format=3 uid="uid://g0bgtfgfyjxg"]
+
+[ext_resource type="Script" path="res://Resources/FishData/Behaviour/FishBehaviour.gd" id="1_y1et7"]
+
+[resource]
+script = ExtResource("1_y1et7")
+weight = 0.0
+V_MAX_SPEED = 80.0
+V_ACCELERATION = 200.0
+H_MAX_SPEED = 80.0
+H_ACCELERATION = 100.0

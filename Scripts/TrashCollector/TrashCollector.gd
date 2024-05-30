@@ -1,9 +1,9 @@
 class_name TrashManager
 extends Node
 
-@onready var ui: CanvasLayer = get_node("/root/Ui")
+@onready var ui: CanvasLayer = get_node("/root/Game/UI")
 @onready var player: Player = get_node("/root/Player_")
-@onready var level: Node2D = get_node("/root/Level")
+@onready var level: Node2D = get_node("/root/Game/LevelManager/Level")
 
 var trashes_nodes: Array[Node]
 var interactable_trashes: Array[Trash]
@@ -30,8 +30,8 @@ func _ready():
 	pass
 
 func set_deliver_point():
-	var deliver_point: DeliverPoint = get_node("/root/Level/DeliverPoint")
-	deliver_point.player_entered_point.connect(set_possible_delivery)
+	var deliver_point: DeliverPoint = get_node("/root/Game/LevelManager/Level/DeliverPoint")
+	deliver_point.player_delivering.connect(set_possible_delivery)
 	deliver_point.player_left_point.connect(set_possible_delivery)
 
 func start_interaction_ui(trash: Trash):
@@ -83,18 +83,18 @@ func release_trash(_trash: Node2D):
 	trash.call_deferred("reparent", level)
 	pass
 
-func set_possible_delivery(player: Player, action: String):
+func set_possible_delivery(action: String):
 	if player.carrying_trash && action == "Entering":
 		button_ui = pick_trash_button.instantiate()
 		player.add_child(button_ui)
 		button_ui.global_position.y -= 48 
 		player.about_to_deliver = true
-	elif action == "Leaving":
+	elif action == "Leaving" && player.carrying_trash:
 		player.about_to_deliver = false
 		player.get_node("UI_Interact_Button").queue_free()
 	pass
 
-func deliver_trash(player: Player):
+func deliver_trash():
 	player.data.money += player.trash_carried.trash_data.reward_money
 	player.trash_carried.queue_free()
 	collected_trash_on_level += 1

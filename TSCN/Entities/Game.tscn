@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://blo4naqhgbpih"]
+
+[ext_resource type="PackedScene" uid="uid://cdy1mw5vvp0cw" path="res://TSCN/Entities/level_manager.tscn" id="1_7wrhu"]
+[ext_resource type="PackedScene" uid="uid://kqr1e3fjfah3" path="res://TSCN/Entities/trash_collector.tscn" id="2_lw45a"]
+[ext_resource type="PackedScene" uid="uid://d3kxbhkefjdle" path="res://TSCN/Entities/ui.tscn" id="3_g7oda"]
+[ext_resource type="PackedScene" uid="uid://c461p4lw5q1t7" path="res://TSCN/Entities/upgrade_shop.tscn" id="4_akoic"]
+
+[node name="Game" type="Node"]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_7wrhu")]
+
+[node name="TrashCollector" parent="." instance=ExtResource("2_lw45a")]
+
+[node name="UI" parent="." instance=ExtResource("3_g7oda")]
+
+[node name="UpgradeShop" parent="." instance=ExtResource("4_akoic")]

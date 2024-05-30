@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwydtc77lpj2t"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CardUpgrade.gd" id="1_f7rmh"]
+
+[node name="CardUpgade" type="Control"]
+custom_minimum_size = Vector2(267, 350)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_right = -885.0
+offset_bottom = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_f7rmh")
+
+[node name="Card" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(267, 350)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.51, 0.51, 1)
+
+[node name="CardName" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 68.0
+offset_right = 253.0
+offset_bottom = 189.0
+text = "teste"
+
+[node name="CardDescription" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 123.0
+offset_right = 251.0
+offset_bottom = 244.0
+text = "teste"

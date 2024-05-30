@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmpr6nn6feapk"]
+[gd_scene load_steps=7 format=3 uid="uid://cmpr6nn6feapk"]
 
 [ext_resource type="Script" path="res://Scripts/Fish/Fish.gd" id="1_udpjn"]
 [ext_resource type="Script" path="res://Resources/AnimationHelper/AnimationHelper.gd" id="2_psy6l"]
-[ext_resource type="Script" path="res://Scripts/DEBUG/Label-Fish.gd" id="2_ssllj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ogsb8"]
 friction = 0.2
@@ -58,7 +57,6 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-script = ExtResource("2_ssllj")
 
 [node name="Teste" type="RayCast2D" parent="."]
 position = Vector2(60, 0)

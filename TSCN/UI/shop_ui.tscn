@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh468dks5yty6"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIShop.gd" id="1_2sdbj"]
+[ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="1_urnwi"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="3_5ajs0"]
+
+[node name="ShopUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2sdbj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575.5, 325.25)
+scale = Vector2(3.81126, 4.54196)
+texture = ExtResource("1_urnwi")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 25.0
+offset_right = 905.0
+offset_bottom = 193.0
+theme_override_fonts/normal_font = ExtResource("3_5ajs0")
+theme_override_font_sizes/normal_font_size = 48
+text = "Compre algum aprimoramento"
+
+[node name="FlowContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -547.0
+offset_top = -145.0
+offset_right = 544.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FlowContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 30

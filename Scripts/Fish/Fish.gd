@@ -39,7 +39,7 @@ func _ready():
 	behaviour.point_reached.connect(behaviour.seek_player)
 	behaviour.turn.connect(behaviour.flip)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if behaviour.triggered:
 		behaviour.follow(self, get_node("/root/Player_").global_position)
 	if behaviour.returning_to_spawn && !behaviour.triggered:
@@ -77,7 +77,7 @@ func detect(body):
 		behaviour.target = body
 	if body is StaticBody2D && !behaviour.triggered:
 		behaviour.wander_direction *= -1
-		behaviour.turn.emit(self, sprite)
+		behaviour.turn.emit(self)
 		flipping = true
 
 

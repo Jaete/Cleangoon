@@ -4,6 +4,7 @@ extends RigidBody2D
 signal player_grabbed_trash()
 signal player_released_trash()
 signal player_delivered_trash()
+signal player_opened_shop()
 
 @export_category("Physics Movement")
 @export var physics: PlayerPhysics
@@ -19,12 +20,13 @@ var nearby_trash: bool = false
 var carrying_trash: bool = false
 var trash_carried: Trash
 var about_to_deliver: bool
+var about_to_open_shop: bool
 
 func _ready():
 	mass = 0.5
 	gravity_scale = 0.3
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	controller.get_input()
 	animation.check_direction(self, sprite)
 	handle_physics()
@@ -56,10 +58,12 @@ func check_for_actions():
 		carrying_trash = true
 		controller.get_input()
 	if about_to_deliver && controller.input_action == controller.GRAB:
-		player_delivered_trash.emit(self)
+		player_delivered_trash.emit()
+	if about_to_open_shop && controller.input_action == controller.GRAB:
+		player_opened_shop.emit()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	pass # Replace with function body.

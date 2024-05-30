@@ -24,6 +24,15 @@ func collect_trash():
 	trash_collected += 1
 	pass
 
-func add_upgrade(upgrade):
+func add_upgrade(upgrade: int):
 	current_upgrades.append(upgrade)
+	print("upgrade ADICIONADO -> ", upgrade)
 	pass
+
+func check_for_upgrade(upgrade: int):
+	if(current_upgrades.find(upgrade) != 1):
+		print("Player POSSUI upgrade")
+	else:
+		print("Player NAO POSSUI upgrade")
+
+

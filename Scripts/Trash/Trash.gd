@@ -21,7 +21,7 @@ func _ready():
 	sprite.offset = trash_data.offset
 	interactable_area.shape = trash_data.interaction_area
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var parent: Node2D = get_parent()
 	if parent is Player:
 		global_position = parent.global_position
@@ -34,25 +34,25 @@ func _physics_process(delta):
 		if button != null:
 			button.set_visible(false)
 
-func _on_body_entered(body):
-	if body is TileMap:
+func _on_body_entered(_body):
+	if _body is TileMap:
 		sprite.texture = trash_data.ground_texture
 		player_dropped_trash.emit(self)
 		is_on_ground = true
 	pass
 
-func _on_body_exited(body):
-	if body is TileMap:
+func _on_body_exited(_body):
+	if _body is TileMap:
 		sprite.texture = trash_data.lifted_texture
 		is_on_ground = false
 	pass
 
-func _on_interactable_area_body_entered(body):
-	if body is Player:
+func _on_interactable_area_body_entered(_body):
+	if _body is Player:
 		player_entered_interaction_range.emit(self)
 	pass
 
-func _on_interactable_area_body_exited(body):
-	if body is Player:
+func _on_interactable_area_body_exited(_body):
+	if _body is Player:
 		player_left_interaction_range.emit(self)
 	pass

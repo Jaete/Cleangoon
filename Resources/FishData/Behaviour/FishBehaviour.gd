@@ -23,8 +23,6 @@ var wander_direction: int = 1
 func follow(fish: Fish, point: Vector2):
 	var x_distance: float = fish.global_position.x - point.x
 	var y_distance: float = fish.global_position.y - point.y
-	var force_x: float
-	var force_y: float
 	if x_distance > 0 && y_distance > 0:
 		accelerate(fish, -1, -1)
 	if x_distance < 0 && y_distance > 0:
@@ -101,16 +99,7 @@ func seek_player(sight: Area2D):
 			returning_to_spawn = false
 	pass
 
-func flip(fish: Fish, sprite: Sprite2D):
+func flip(fish: Fish):
 	fish.teste.position.x *= -1
 	fish.mouth_shape.position.x *= -1
-	pass
-
-func check_direction(fish: Fish, sprite: Sprite2D):
-	#if fish.linear_velocity.x > 0 && sprite.scale.x < 0:
-		#fish.sprite.scale.x *= -1
-		#sprite.rotation_degrees *= -1
-	#if fish.linear_velocity.x < 0 && sprite.scale.x > 0:
-		#fish.sprite.scale.x *= -1
-		#sprite.rotation_degrees *= -1
 	pass

@@ -10,7 +10,7 @@ const LEFT: float = -1.0
 const RIGHT: float = 1.0
 const STOP: float = 0.0
 
-func move(player: Player, is_boosting: bool, h_movement: int, v_movement: int):
+func move(player: Player, _is_boosting: bool, h_movement: int, v_movement: int):
 	if abs(player.linear_velocity.x) >= (H_MAX_SPEED):
 		if player.controller.horizonal_movement == 0 && player.linear_velocity.x >= 0:
 			player.linear_velocity.x -= H_MAX_SPEED * player.get_physics_process_delta_time()

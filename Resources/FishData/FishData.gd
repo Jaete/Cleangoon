@@ -7,6 +7,7 @@ const SIGHT_OFFSET_Y: int = 18
 @export var salmon: bool
 @export var mudfish: bool
 @export var sight_offset_x: int
+@export var damage: int
 
 var sprite_texture: Texture2D
 var mouth_position: Vector2

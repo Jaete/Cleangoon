@@ -87,4 +87,8 @@ func _on_body_entered(body):
 		behaviour.wandering = false
 		behaviour.triggered = true
 		behaviour.target = body
+	if body is StaticBody2D:
+		behaviour.wander_direction *= -1
+		behaviour.turn.emit(self)
+		flipping = true
 	pass # Replace with function body.

@@ -22,6 +22,10 @@ Player_="*res://TSCN/Entities/player.tscn"
 
 project/assembly_name="A4 Faculdade"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Move_Left={

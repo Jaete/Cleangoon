@@ -24,6 +24,13 @@ var upgrades_available: Array[int] = [
 	Upgrades.SPECIAL_STORAGE,
 ]
 
+var upgrades_prices: Array[String] = [
+	"1200",
+	"1000",
+	"2000",
+	"3000",
+]
+
 func _ready():
 	delivery_point.player_buying.connect(set_possible_shop)
 	player.player_opened_shop.connect(open_shop)

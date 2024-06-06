@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 
 Player_="*res://TSCN/Entities/player.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="A4 Faculdade"

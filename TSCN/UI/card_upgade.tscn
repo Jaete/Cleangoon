@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwydtc77lpj2t"]
+[gd_scene load_steps=4 format=3 uid="uid://bwydtc77lpj2t"]
 
 [ext_resource type="Script" path="res://Scripts/UI/CardUpgrade.gd" id="1_f7rmh"]
+[ext_resource type="Texture2D" uid="uid://ls2giua5mcgv" path="res://Assets/UI/strong-arm-card.png" id="2_orgsu"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="3_11p5j"]
 
 [node name="CardUpgade" type="Control"]
 custom_minimum_size = Vector2(267, 350)
@@ -17,28 +19,47 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_f7rmh")
 
-[node name="Card" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(267, 350)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.51, 0.51, 1)
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(136, 175)
+scale = Vector2(2.95652, 2.75)
+texture = ExtResource("2_orgsu")
 
-[node name="CardName" type="RichTextLabel" parent="."]
+[node name="CardName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 68.0
-offset_right = 253.0
-offset_bottom = 189.0
+offset_left = 13.0
+offset_top = 199.0
+offset_right = 259.0
+offset_bottom = 233.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 14
 text = "teste"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
 
-[node name="CardDescription" type="RichTextLabel" parent="."]
+[node name="CardDescription" type="Label" parent="."]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 123.0
+offset_left = 22.0
+offset_top = 247.0
+offset_right = 252.0
+offset_bottom = 329.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 12
+text = "teste"
+autowrap_mode = 3
+uppercase = true
+
+[node name="CardPrice" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 313.0
 offset_right = 251.0
-offset_bottom = 244.0
+offset_bottom = 340.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 12
 text = "teste"
+autowrap_mode = 3
+uppercase = true

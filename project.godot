@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="A4 Faculdade"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Move_Left={

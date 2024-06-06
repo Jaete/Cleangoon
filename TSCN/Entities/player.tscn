@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cytg6jnj3iky4"]
+[gd_scene load_steps=15 format=3 uid="uid://cytg6jnj3iky4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
 [ext_resource type="Resource" uid="uid://502osudyjdp8" path="res://Resources/PlayerPhysics/PlayerPhysics.tres" id="2_02aco"]
@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://3bcj6bpysgo7" path="res://Resources/PlayerController/PlayerController.tres" id="3_vg3af"]
 [ext_resource type="Resource" uid="uid://bjvg66l47ddex" path="res://Resources/AnimationHelper/AnimationHelper.tres" id="4_rrypg"]
 [ext_resource type="Resource" uid="uid://cg5bhkxvsmw8h" path="res://Resources/PlayerData/PlayerData.tres" id="5_74pwt"]
-[ext_resource type="Texture2D" uid="uid://bnfyvc4e4fahb" path="res://Assets/Sprites/Player/strong-arm.png" id="8_wf5d6"]
+[ext_resource type="AudioStream" uid="uid://c7xqexlv33gr6" path="res://Assets/Audio/Retro Impact Metal 36.wav" id="8_7mva0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
 friction = 0.5
@@ -16,7 +16,71 @@ bounce = 0.4
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvl24"]
 radius = 20.0
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pjrw"]
+radius = 15.0
+
+[sub_resource type="Animation" id="Animation_g1nhb"]
+resource_name = "Blink_Red"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.74, 0, 0.0123331, 1), Color(1, 1, 1, 1), Color(0.741176, 0, 0.0117647, 1), Color(1, 1, 1, 1), Color(0.741176, 0, 0.0117647, 1), Color(1, 1, 1, 1), Color(0.741176, 0, 0.0117647, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Damage:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_btjil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Damage:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgvlm"]
+_data = {
+"Blink_Red": SubResource("Animation_g1nhb"),
+"RESET": SubResource("Animation_btjil")
+}
+
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("sprite", "anim_player")]
 physics_material_override = SubResource("PhysicsMaterial_k4xc7")
 lock_rotation = true
 max_contacts_reported = 5
@@ -26,6 +90,7 @@ physics = ExtResource("2_02aco")
 controller = ExtResource("3_vg3af")
 animation = ExtResource("4_rrypg")
 sprite = NodePath("Sprite2D")
+anim_player = NodePath("AnimationPlayer")
 data = ExtResource("5_74pwt")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
@@ -52,10 +117,20 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_asste")
 
-[node name="Strong-arm" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(23, 20)
-rotation = -0.302308
-texture = ExtResource("8_wf5d6")
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_5pjrw")
+debug_color = Color(0.90443, 0.0270304, 0.740722, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cgvlm")
+}
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_7mva0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

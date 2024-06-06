@@ -6,6 +6,8 @@ signal player_released_trash()
 signal player_delivered_trash()
 signal player_opened_shop()
 
+signal received_damage()
+
 @export_category("Physics Movement")
 @export var physics: PlayerPhysics
 @export_category("Player Controller")
@@ -13,6 +15,7 @@ signal player_opened_shop()
 @export_category("Animation Helper")
 @export var animation: AnimationHelper
 @export var sprite: Sprite2D
+@export var anim_player: AnimationPlayer
 @export_category("Player Data")
 @export var data: PlayerData
 
@@ -62,8 +65,8 @@ func check_for_actions():
 	if about_to_open_shop && controller.input_action == controller.GRAB:
 		player_opened_shop.emit()
 
-func _process(_delta):
-	pass
-
-func _on_body_entered(_body):
+func _on_hurtbox_area_entered(area):
+	var parent: Node2D = area.get_parent()
+	if area.name == "Mouth" && parent is Fish:
+		received_damage.emit(parent as Fish)
 	pass # Replace with function body.

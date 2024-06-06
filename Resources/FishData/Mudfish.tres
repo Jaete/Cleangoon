@@ -6,3 +6,5 @@
 script = ExtResource("1_8bkfw")
 salmon = false
 mudfish = true
+sight_offset_x = 0
+damage = 30

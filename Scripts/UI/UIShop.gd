@@ -1,6 +1,8 @@
 class_name UIShop
 extends Control
 
+signal notify_shop_manager()
+
 var upgrades_available_names: Array[String] = [
 	"GINSU 2000",
 	"Braço mecânico",
@@ -25,12 +27,17 @@ var card_upgrade_ui: CardUpgrade
 func _ready():
 	for upgrade in shop.upgrades_available:
 		card_upgrade_ui = card_upgrade.instantiate()
+		card_upgrade_ui.upgrade_id = upgrade
 		card_upgrade_ui.card_name = upgrades_available_names[upgrade]
 		card_upgrade_ui.card_description = upgrades_available_descriptions[upgrade] 
-		card_upgrade_ui.card_price = "R$ " + shop.upgrades_prices[upgrade] + ",00"
+		card_upgrade_ui.card_price = shop.upgrades_prices[upgrade]
+		card_upgrade_ui.card_clicked.connect(emit_to_manager)
 		get_node("ScrollContainer/HBoxContainer").add_child(card_upgrade_ui)
-	pass # Replace with function body.
+	$Open.play()
+	pass
 
+func emit_to_manager(price: int, upgrade):
+	notify_shop_manager.emit(price, upgrade)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

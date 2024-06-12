@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://baed6p1bm8dbo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/cannot_buy.gd" id="1_6girb"]
+[ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="1_kjpyb"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="2_hf60o"]
+[ext_resource type="AudioStream" uid="uid://bxyj1w6nkqyki" path="res://Assets/Audio/Retro Blop StereoUP 04.wav" id="4_og4et"]
+[ext_resource type="PackedScene" uid="uid://2skmxiafolb0" path="res://TSCN/UI/animation_player_buy.tscn" id="5_ldqx1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26gnl"]
+bg_color = Color(0.819608, 0.611765, 0.294118, 1)
+shadow_size = 5
+shadow_offset = Vector2(2, 0)
+
+[sub_resource type="Theme" id="Theme_wpmdj"]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("2_hf60o")
+Button/styles/normal = SubResource("StyleBoxFlat_26gnl")
+
+[node name="CannotBuy" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6girb")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(584.111, 309.75)
+scale = Vector2(2.64154, 1.7937)
+texture = ExtResource("1_kjpyb")
+
+[node name="Label" type="Label" parent="Background"]
+offset_left = -130.925
+offset_top = -49.9698
+offset_right = 133.075
+offset_bottom = -27.9698
+theme_override_fonts/font = ExtResource("2_hf60o")
+theme_override_font_sizes/font_size = 12
+text = "SEM FUNDOS SUFICIENTES"
+
+[node name="OK" type="Button" parent="Background"]
+offset_left = -27.0578
+offset_top = 2.08877
+offset_right = 20.9422
+offset_bottom = 48.0888
+theme = SubResource("Theme_wpmdj")
+text = "OK"
+
+[node name="OK_Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_og4et")
+volume_db = -10.0
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("5_ldqx1")]
+
+[connection signal="pressed" from="Background/OK" to="." method="_on_ok_pressed"]

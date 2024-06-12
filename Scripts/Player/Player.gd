@@ -24,6 +24,7 @@ var carrying_trash: bool = false
 var trash_carried: Trash
 var about_to_deliver: bool
 var about_to_open_shop: bool
+var showing_button: bool
 
 func _ready():
 	mass = 0.5

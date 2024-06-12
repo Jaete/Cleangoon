@@ -8,7 +8,7 @@ enum Upgrades {
 	SPECIAL_STORAGE,
 }
 
-var money: int = 0
+var money: int = 900
 var trash_collected: int = 0
 var current_upgrades: Array[int] = []
 

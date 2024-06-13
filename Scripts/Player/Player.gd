@@ -15,6 +15,7 @@ signal received_damage()
 @export_category("Animation Helper")
 @export var animation: AnimationHelper
 @export var sprite: Sprite2D
+@export var strong_arm: Sprite2D
 @export var anim_player: AnimationPlayer
 @export_category("Player Data")
 @export var data: PlayerData
@@ -29,10 +30,11 @@ var showing_button: bool
 func _ready():
 	mass = 0.5
 	gravity_scale = 0.3
+	get_node("/root/Game/UpgradeShop").player_bought.connect(check_new_upgrade)
 
 func _physics_process(_delta):
 	controller.get_input()
-	animation.check_direction(self, sprite)
+	animation.check_direction(self, sprite, strong_arm)
 	handle_physics()
 	rotate_player()
 	check_for_actions()
@@ -40,11 +42,11 @@ func _physics_process(_delta):
 
 func rotate_player():
 	if controller.vertical_movement < 0:
-		animation.rise(sprite)
+		animation.rise(sprite, strong_arm)
 	elif controller.vertical_movement > 0 && linear_velocity.y > 0:
-		animation.fall(sprite)
+		animation.fall(sprite, strong_arm)
 	else:
-		animation.align(sprite)
+		animation.align(sprite, strong_arm)
 
 func handle_physics():
 	physics.move(self, controller.is_boosting, controller.horizonal_movement, controller.vertical_movement)
@@ -59,7 +61,6 @@ func check_for_actions():
 		player_released_trash.emit(trash_carried)
 	elif controller.input_action == controller.GRAB && !carrying_trash && nearby_trash:
 		player_grabbed_trash.emit()
-		carrying_trash = true
 		controller.get_input()
 	if about_to_deliver && controller.input_action == controller.GRAB:
 		player_delivered_trash.emit()
@@ -71,3 +72,12 @@ func _on_hurtbox_area_entered(area):
 	if area.name == "Mouth" && parent is Fish:
 		received_damage.emit(parent as Fish)
 	pass # Replace with function body.
+
+func check_new_upgrade(upgrade: int):
+	match upgrade:
+		data.Upgrades.STRONG_ARM:
+			$"Strong-arm".visible = true
+		data.Upgrades.FLASHLIGHT:
+			pass
+		data.Upgrades.SPECIAL_STORAGE:
+			pass

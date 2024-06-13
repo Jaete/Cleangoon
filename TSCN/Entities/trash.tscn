@@ -1,13 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctv4ao3whr30o"]
+[gd_scene load_steps=10 format=3 uid="uid://ctv4ao3whr30o"]
 
 [ext_resource type="Script" path="res://Scripts/Trash/Trash.gd" id="1_n1lpt"]
+[ext_resource type="Texture2D" uid="uid://85erut4ioru2" path="res://Assets/Sprites/Trash/uranium.png" id="2_8tvjw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncx3a"]
 radius = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t78b2"]
+size = Vector2(25, 25)
 
-[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "body", "physics_body", "interactable_area") groups=["Trash"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ajg2"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v7oa"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5t40"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew4lo"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2eph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ajg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v7oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5t40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew4lo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") groups=["Trash"]]
 y_sort_enabled = true
 mass = 0.1
 gravity_scale = 0.3
@@ -16,6 +54,7 @@ max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_n1lpt")
 sprite = NodePath("Sprite")
+animated_sprite = NodePath("AnimatedSprite2D")
 body = NodePath("BodyShape")
 physics_body = NodePath(".")
 interactable_area = NodePath("InteractableArea/Shape")
@@ -29,6 +68,12 @@ shape = SubResource("CircleShape2D_ncx3a")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t78b2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_r2eph")
+autoplay = "default"
+frame_progress = 0.897837
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

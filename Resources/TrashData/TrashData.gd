@@ -31,6 +31,10 @@ func initialize():
 			#3:
 			#4:
 	if is_chemical:
+		ground_texture = load("res://Assets/Sprites/Trash/uranium.png")
+		lifted_texture = ground_texture
+		shape = load("res://Resources/TrashData/Shapes/chemical.tres")
+		interaction_area = load("res://Resources/TrashData/InteractionAreas/chemical.tres")
 		reward_money = 300
 	if is_common:
 		ground_texture = load("res://Assets/Sprites/Trash/Common/common-ground.png")

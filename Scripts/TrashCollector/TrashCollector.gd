@@ -47,9 +47,10 @@ func start_interaction_ui(trash: Trash):
 
 func show_ui(trash: Trash):
 	if !player.carrying_trash:
-		button_ui = pick_trash_button.instantiate()
-		trash.add_child(button_ui)
-		button_ui.global_position.y -= 48
+		if trash.get_node_or_null("UI_Interact_Button") == null:
+			button_ui = pick_trash_button.instantiate()
+			trash.add_child(button_ui)
+			button_ui.global_position.y -= 48
 		current_trash_active = trash
 		player.nearby_trash = true
 		player.showing_button = true
@@ -65,12 +66,16 @@ func end_interaction_ui(trash: Trash):
 			current_trash_active = interactable_trashes[0]
 			interactable_trashes.clear()
 			show_ui(current_trash_active)
+		if is_instance_valid(ui.get_node("CannotPickTrash")):
+			ui.get_node("CannotPickTrash").queue_free()
 	else:
 		if is_instance_valid(button_ui):
 			button_ui.queue_free()
 			player.showing_button = false
 		interactable_trashes.erase(trash)
 		player.nearby_trash = true
+		if is_instance_valid(ui.get_node("CannotPickTrash")):
+			ui.get_node("CannotPickTrash").queue_free()
 	pass
 
 func grab_trash():
@@ -80,13 +85,23 @@ func grab_trash():
 		current_trash_active.set_name("Grabbed_Trash")
 		player.trash_carried = current_trash_active
 		current_trash_active.reparent(player)
-	else:
+		player.carrying_trash = true
+	elif current_trash_active.trash_data.is_heavy:
 		cannot_pick_ui = cannot_pick_trash.instantiate()
 		ui.add_child(cannot_pick_ui)
-	if current_trash_active.trash_data.is_common:
+	elif current_trash_active.trash_data.is_chemical && player.data.current_upgrades.find(player.data.Upgrades.SPECIAL_STORAGE) != -1:
 		current_trash_active.set_name("Grabbed_Trash")
 		player.trash_carried = current_trash_active
 		current_trash_active.reparent(player)
+		player.carrying_trash = true
+	elif current_trash_active.trash_data.is_chemical:
+		cannot_pick_ui = cannot_pick_trash.instantiate()
+		ui.add_child(cannot_pick_ui)
+	elif current_trash_active.trash_data.is_common:
+		current_trash_active.set_name("Grabbed_Trash")
+		player.trash_carried = current_trash_active
+		current_trash_active.reparent(player)
+		player.carrying_trash = true
 	pass
 
 func release_trash(_trash: Node2D):
@@ -130,5 +145,6 @@ func reset_deliver_point():
 	player.carrying_trash = false
 	current_trash_active = null
 	player.nearby_trash = false
+	player.showing_button = true
 	delivered.emit()
 	pass

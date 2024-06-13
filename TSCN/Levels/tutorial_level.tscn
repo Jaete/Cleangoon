@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnamtpdl1nyu4"]
+[gd_scene load_steps=16 format=3 uid="uid://dnamtpdl1nyu4"]
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
+[ext_resource type="Resource" uid="uid://fxevv2to4f15" path="res://Resources/TrashData/Data/chemical.tres" id="5_1rax5"]
 [ext_resource type="PackedScene" uid="uid://bkyu4j36vhaaf" path="res://TSCN/Entities/deliver_pont.tscn" id="6_faido"]
 [ext_resource type="PackedScene" uid="uid://ctv4ao3whr30o" path="res://TSCN/Entities/trash.tscn" id="7_45d0x"]
 [ext_resource type="PackedScene" uid="uid://cmpr6nn6feapk" path="res://TSCN/Entities/fish.tscn" id="7_qkx1s"]
@@ -80,11 +81,11 @@ trash_data = ExtResource("8_dae1t")
 
 [node name="Trash2" parent="." instance=ExtResource("7_45d0x")]
 position = Vector2(806, 234)
-trash_data = ExtResource("8_dae1t")
+trash_data = ExtResource("9_4ltoc")
 
 [node name="Trash3" parent="." instance=ExtResource("7_45d0x")]
 position = Vector2(873, 282)
-trash_data = ExtResource("9_4ltoc")
+trash_data = ExtResource("5_1rax5")
 
 [node name="DeliverPoint" parent="." instance=ExtResource("6_faido")]
 position = Vector2(589, 0)

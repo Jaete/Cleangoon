@@ -2,7 +2,7 @@ class_name PlayerData
 extends Resource
 
 enum Upgrades {
-	GRASS_CUTTER = 1,
+	GRASS_CUTTER = 0,
 	STRONG_ARM,
 	FLASHLIGHT,
 	SPECIAL_STORAGE,

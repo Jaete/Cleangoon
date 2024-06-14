@@ -5,5 +5,7 @@
 [resource]
 script = ExtResource("1_y4xj1")
 weight = 0.0
-horizontal_speed = 200.0
-vertical_speed = 200.0
+V_MAX_SPEED = 100.0
+V_ACCELERATION = 250.0
+H_MAX_SPEED = 150.0
+H_ACCELERATION = 150.0

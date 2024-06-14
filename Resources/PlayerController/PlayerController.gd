@@ -37,7 +37,7 @@ func get_horizontal_movement():
 		horizonal_movement = STOP
 
 func check_boost():
-	if Input.is_action_pressed("Boost"):
+	if Input.is_action_just_pressed("Boost"):
 		is_boosting = true
 	else:
 		is_boosting = false

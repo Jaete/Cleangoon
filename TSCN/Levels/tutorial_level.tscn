@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnamtpdl1nyu4"]
+[gd_scene load_steps=12 format=3 uid="uid://dnamtpdl1nyu4"]
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmpr6nn6feapk" path="res://TSCN/Entities/fish.tscn" id="7_qkx1s"]
 [ext_resource type="Resource" uid="uid://bsvfgg4iop3es" path="res://Resources/FishData/Salmon.tres" id="8_5apgq"]
 [ext_resource type="Resource" uid="uid://cd248grsux1qa" path="res://Resources/TrashData/Data/common.tres" id="8_dae1t"]
-[ext_resource type="Resource" uid="uid://dltl8cfw7kwhb" path="res://Resources/TrashData/Data/heavy.tres" id="9_4ltoc"]
 [ext_resource type="Resource" uid="uid://cyix644ynettq" path="res://Resources/FishData/Behaviour/Salmon.tres" id="9_u2nnd"]
-[ext_resource type="Resource" uid="uid://bavv3hnsenxk8" path="res://Resources/FishData/Mudfish.tres" id="10_qoc6u"]
-[ext_resource type="Resource" uid="uid://g0bgtfgfyjxg" path="res://Resources/FishData/Behaviour/Mudfish.tres" id="11_aehqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aeuvl"]
 size = Vector2(1215, 188)
@@ -23,7 +20,16 @@ size = Vector2(765, 98)
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(-672, -288)
+position = Vector2(-588, 5)
+
+[node name="Sun" type="DirectionalLight2D" parent="."]
+position = Vector2(507, -447)
+energy = 1.02
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 6.1
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2(411, 314)
@@ -75,26 +81,92 @@ position = Vector2(361.5, -21)
 shape = SubResource("RectangleShape2D_ghjdm")
 
 [node name="Trash" parent="." instance=ExtResource("7_45d0x")]
-position = Vector2(908, 176)
+position = Vector2(653, 275)
 trash_data = ExtResource("8_dae1t")
+
+[node name="Trash3" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(581, 224)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash4" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(590, 287)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash5" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(532, 272)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash6" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(422, 211)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash7" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(441, 283)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash8" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(382, 269)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash9" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(325, 262)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
+
+[node name="Trash10" parent="." node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") instance=ExtResource("7_45d0x")]
+position = Vector2(269, 262)
+trash_data = ExtResource("8_dae1t")
+sprite = NodePath("../Trash/Sprite")
+animated_sprite = NodePath("../Trash/AnimatedSprite2D")
+body = NodePath("../Trash/BodyShape")
+physics_body = NodePath("../Trash")
+interactable_area = NodePath("../Trash/InteractableArea/Shape")
 
 [node name="Trash2" parent="." instance=ExtResource("7_45d0x")]
-position = Vector2(806, 234)
+position = Vector2(847, 258)
 trash_data = ExtResource("8_dae1t")
-
-[node name="Trash3" parent="." instance=ExtResource("7_45d0x")]
-position = Vector2(873, 282)
-trash_data = ExtResource("9_4ltoc")
 
 [node name="DeliverPoint" parent="." instance=ExtResource("6_faido")]
 position = Vector2(589, 0)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [node name="Fish" parent="." instance=ExtResource("7_qkx1s")]
-position = Vector2(621, 216)
+position = Vector2(589.062, 197.598)
 fish_data = ExtResource("8_5apgq")
 behaviour = ExtResource("9_u2nnd")
-
-[node name="Fish2" parent="." instance=ExtResource("7_qkx1s")]
-position = Vector2(256, 128)
-fish_data = ExtResource("10_qoc6u")
-behaviour = ExtResource("11_aehqe")

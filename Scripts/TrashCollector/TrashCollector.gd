@@ -12,6 +12,8 @@ var pick_trash_button: PackedScene =  preload("res://TSCN/UI/ui_interact_button.
 var button_ui: Sprite2D
 var control: Control
 
+var cannot_pick_trash: PackedScene = preload("res://TSCN/UI/cannot_pick_trash.tscn")
+var cannot_pick_ui: CannotInteract
 var collected_trash_on_level: int = 0
 
 func _ready():
@@ -58,18 +60,46 @@ func end_interaction_ui(trash: Trash):
 			current_trash_active = interactable_trashes[0]
 			interactable_trashes.clear()
 			show_ui(current_trash_active)
+		if ui.get_node_or_null("CannotPickTrash") != null:
+			ui.get_node("CannotPickTrash").queue_free()
 	else:
 		if is_instance_valid(button_ui):
 			button_ui.queue_free()
 		interactable_trashes.erase(trash)
-		player.nearby_trash = true
+		player.nearby_trash = false
+		if ui.get_node_or_null("CannotPickTrash") != null:
+			ui.get_node("CannotPickTrash").queue_free()
 	pass
 
 func grab_trash():
-	current_trash_active.set_name("Grabbed_Trash")
-	player.trash_carried = current_trash_active
-	current_trash_active.reparent(player)
+	print("IS HEAVY: ", current_trash_active.trash_data.is_heavy)
+	print("PLAYER HAVE ARM: ", player.data.current_upgrades.find(player.data.Upgrades.STRONG_ARM))
+	if current_trash_active.trash_data.is_heavy && player.data.current_upgrades.find(player.data.Upgrades.STRONG_ARM) != -1:
+		current_trash_active.set_name("Grabbed_Trash")
+		player.trash_carried = current_trash_active
+		current_trash_active.reparent(player)
+		player.carrying_trash = true
+	elif current_trash_active.trash_data.is_heavy:
+		cannot_pick_trash_reason("É muito pesado para carregar.")
+	elif current_trash_active.trash_data.is_chemical && player.data.current_upgrades.find(player.data.Upgrades.SPECIAL_STORAGE) != -1:
+		current_trash_active.set_name("Grabbed_Trash")
+		player.trash_carried = current_trash_active
+		current_trash_active.reparent(player)
+		player.carrying_trash = true
+	elif current_trash_active.trash_data.is_chemical:
+		cannot_pick_trash_reason("Irá contaminar toda a água sem armazenamento apropriado.")
+	elif current_trash_active.trash_data.is_common:
+		current_trash_active.set_name("Grabbed_Trash")
+		player.trash_carried = current_trash_active
+		current_trash_active.reparent(player)
+		player.carrying_trash = true
 	pass
+
+func cannot_pick_trash_reason(reason: String):
+	if ui.get_node_or_null("CannotPickTrash") == null:
+		cannot_pick_ui = cannot_pick_trash.instantiate()
+		cannot_pick_ui.reason = reason
+		ui.add_child(cannot_pick_ui)
 
 func release_trash(_trash: Node2D):
 	var trash: Node2D = _trash

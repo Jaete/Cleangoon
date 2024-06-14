@@ -1,8 +1,21 @@
 class_name PlayerData
 extends Resource
 
+@export_group("Lantern settings")
+@export var polygon_left: PackedVector2Array
+@export var polygon_right: PackedVector2Array
+@export var light_left: Vector2
+@export var light_right: Vector2
+
+@export_group("Boost settings")
+@export var boost_time: float = 0.1
+@export var boost_recovery: float = 10
+
+var boost_ui: PackedScene = preload("res://TSCN/UI/stamina_pip.tscn")
+
 enum Upgrades {
-	GRASS_CUTTER = 1,
+	BOOST = 0,
+	GRASS_CUTTER,
 	STRONG_ARM,
 	FLASHLIGHT,
 	SPECIAL_STORAGE,
@@ -11,6 +24,8 @@ enum Upgrades {
 var money: int = 0
 var trash_collected: int = 0
 var current_upgrades: Array[int] = []
+
+var boost_quantity: int = 3
 
 func add_money(quantity: int):
 	money += quantity
@@ -35,4 +50,11 @@ func check_for_upgrade(upgrade: int):
 	else:
 		print("Player NAO POSSUI upgrade")
 
+func decrement_boost_quantity():
+	print("decrement boost")
+	boost_quantity -= 1
+	pass
 
+func increment_boost_quantity():
+	print("decrement boost")
+	boost_quantity += 1

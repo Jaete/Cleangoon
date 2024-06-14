@@ -11,13 +11,15 @@ var button_ui: Sprite2D
 var shop_ui: Control
 
 enum Upgrades {
-	GRASS_CUTTER = 0,
+	BOOST = 0,
+	GRASS_CUTTER,
 	STRONG_ARM,
 	FLASHLIGHT,
 	SPECIAL_STORAGE,
 }
 
 var upgrades_available: Array[int] = [
+	Upgrades.BOOST,
 	Upgrades.GRASS_CUTTER,
 	Upgrades.STRONG_ARM,
 	Upgrades.FLASHLIGHT,
@@ -25,6 +27,7 @@ var upgrades_available: Array[int] = [
 ]
 
 var upgrades_prices: Array[String] = [
+	"1000",
 	"1200",
 	"1000",
 	"2000",

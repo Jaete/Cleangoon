@@ -2,6 +2,7 @@ class_name UIShop
 extends Control
 
 var upgrades_available_names: Array[String] = [
+	"Modo TURBO",
 	"GINSU 2000",
 	"Braço mecânico",
 	"Lanterna",
@@ -9,6 +10,7 @@ var upgrades_available_names: Array[String] = [
 ]
 
 var upgrades_available_descriptions: Array[String] = [
+	"Navega da maneira mais rápida, com curta duração.",
 	"Corta a mais dura das vegetações.",
 	"Levanta o mais pesado lixo.",
 	"Ilumina o mais escuro caminho",

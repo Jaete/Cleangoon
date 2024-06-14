@@ -44,6 +44,7 @@ func _on_body_entered(_body):
 func _on_body_exited(_body):
 	if _body is TileMap:
 		sprite.texture = trash_data.lifted_texture
+		animated_sprite.play("lifted_default")
 		is_on_ground = false
 	pass
 

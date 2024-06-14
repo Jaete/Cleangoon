@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0ihobwpbq8jg"]
+
+[ext_resource type="Script" path="res://Scripts/Grass/grass.gd" id="1_8wha0"]
+[ext_resource type="Texture2D" uid="uid://dugju7t4jbli7" path="res://Assets/Sprites/Environment/thick-grass.png" id="1_w5fjo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dskho"]
+radius = 47.0956
+
+[node name="Grass" type="StaticBody2D" node_paths=PackedStringArray("upper_polygon", "lower_polygon", "interaction_area", "sprite")]
+script = ExtResource("1_8wha0")
+upper_polygon = NodePath("Upper")
+lower_polygon = NodePath("Lower")
+interaction_area = NodePath("GrassInteraction")
+sprite = NodePath("Thick-grass")
+
+[node name="Thick-grass" type="Sprite2D" parent="."]
+texture = ExtResource("1_w5fjo")
+
+[node name="GrassInteraction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrassInteraction"]
+shape = SubResource("CircleShape2D_dskho")
+
+[node name="Upper" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -44, -20, -30, 21, -30, 21, -44)
+
+[node name="Lower" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, 29, -20, 45, 21, 45, 21, 29)
+
+[connection signal="body_entered" from="GrassInteraction" to="." method="_on_grass_interaction_body_entered"]
+[connection signal="body_exited" from="GrassInteraction" to="." method="_on_grass_interaction_body_exited"]

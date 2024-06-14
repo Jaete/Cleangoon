@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://ba4ch2yqukfhj" path="res://Assets/Tilesets/tutorial_level.tres" id="1_n7irr"]
 [ext_resource type="Script" path="res://Scripts/Player/MainCamera.gd" id="4_kv8ak"]
+[ext_resource type="Resource" uid="uid://fxevv2to4f15" path="res://Resources/TrashData/Data/chemical.tres" id="5_1rax5"]
 [ext_resource type="PackedScene" uid="uid://bkyu4j36vhaaf" path="res://TSCN/Entities/deliver_pont.tscn" id="6_faido"]
 [ext_resource type="PackedScene" uid="uid://ctv4ao3whr30o" path="res://TSCN/Entities/trash.tscn" id="7_45d0x"]
 [ext_resource type="PackedScene" uid="uid://cmpr6nn6feapk" path="res://TSCN/Entities/fish.tscn" id="7_qkx1s"]

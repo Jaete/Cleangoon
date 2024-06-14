@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwwngnhll20if"]
+
+[ext_resource type="Script" path="res://Scripts/HealthManager/health_manager.gd" id="1_rejrl"]
+[ext_resource type="AudioStream" uid="uid://cd5hn20awvh1v" path="res://Assets/Audio/Retro Turn Off 12.wav" id="2_yw4pd"]
+
+[node name="HealthManager" type="Node"]
+script = ExtResource("1_rejrl")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yw4pd")

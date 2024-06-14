@@ -423,6 +423,7 @@ shape = SubResource("CircleShape2D_cvl24")
 y_sort_enabled = true
 texture = ExtResource("2_kb6fu")
 offset = Vector2(0, 0.905)
+flip_h = true
 
 [node name="Debug" type="Control" parent="."]
 visible = false
@@ -462,3 +463,4 @@ texture = ExtResource("9_3gdk8")
 centered = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

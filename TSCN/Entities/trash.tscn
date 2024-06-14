@@ -8,6 +8,7 @@
 radius = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t78b2"]
+size = Vector2(25, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77ebb"]
 atlas = ExtResource("2_lbi7x")
@@ -87,6 +88,7 @@ max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_n1lpt")
 sprite = NodePath("Sprite")
+animated_sprite = NodePath("AnimatedSprite2D")
 body = NodePath("BodyShape")
 physics_body = NodePath(".")
 interactable_area = NodePath("InteractableArea/Shape")

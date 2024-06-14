@@ -6,6 +6,8 @@ signal player_released_trash()
 signal player_delivered_trash()
 signal player_opened_shop()
 
+signal received_damage()
+
 @export_category("Physics Movement")
 @export var physics: PlayerPhysics
 @export var recovery_timer: Timer
@@ -27,12 +29,14 @@ var carrying_trash: bool = false
 var trash_carried: Trash
 var about_to_deliver: bool
 var about_to_open_shop: bool
+var showing_button: bool
 
 var is_boosting: bool = false
 
 func _ready():
 	mass = 0.5
 	gravity_scale = 0.3
+	get_node("/root/Game/UpgradeShop").player_bought.connect(check_new_upgrade)
 
 func _physics_process(_delta):
 	controller.get_input()
@@ -44,11 +48,11 @@ func _physics_process(_delta):
 
 func rotate_player():
 	if controller.vertical_movement < 0:
-		animation.rise(sprite)
+		animation.rise(sprite, strong_arm)
 	elif controller.vertical_movement > 0 && linear_velocity.y > 0:
-		animation.fall(sprite)
+		animation.fall(sprite, strong_arm)
 	else:
-		animation.align(sprite)
+		animation.align(sprite, strong_arm)
 
 func handle_physics():
 	physics.move(self, is_boosting, controller.horizonal_movement, controller.vertical_movement)
@@ -63,7 +67,6 @@ func check_for_actions():
 		player_released_trash.emit(trash_carried)
 	elif controller.input_action == controller.GRAB && !carrying_trash && nearby_trash:
 		player_grabbed_trash.emit()
-		carrying_trash = true
 		controller.get_input()
 	if about_to_deliver && controller.input_action == controller.GRAB:
 		player_delivered_trash.emit()
@@ -111,3 +114,12 @@ func _on_boost_timeout():
 	if Input.is_action_pressed("Boost"):
 		boost()
 	pass # Replace with function body.
+
+func check_new_upgrade(upgrade: int):
+	match upgrade:
+		data.Upgrades.STRONG_ARM:
+			$"Strong-arm".visible = true
+		data.Upgrades.FLASHLIGHT:
+			pass
+		data.Upgrades.SPECIAL_STORAGE:
+			pass

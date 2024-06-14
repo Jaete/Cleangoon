@@ -1,17 +1,23 @@
 class_name CardUpgrade
 extends Control
 
+signal card_clicked()
+
 var card_name: String
 var card_description: String
 var card_price: String
+var upgrade_id: int
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$CardName.set_text(card_name) #$CardName
+	$CardName.set_text(card_name)
 	$CardDescription.set_text(card_description)
-	$CardPrice.set_text(card_price)
+	$CardPrice.set_text("R$" + card_price + ",00")
 
+func _on_mouse_entered():
+	$Hover.play()
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _on_pressed():
+	$Click.play()
+	card_clicked.emit(int(card_price), upgrade_id)
 	pass

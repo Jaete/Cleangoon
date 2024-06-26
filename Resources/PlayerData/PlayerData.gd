@@ -1,5 +1,5 @@
 class_name PlayerData
-extends Resource
+extends Node
 
 @export_group("Lantern settings")
 @export var polygon_left: PackedVector2Array
@@ -21,7 +21,7 @@ enum Upgrades {
 	SPECIAL_STORAGE,
 }
 
-var money: int = 900
+@export var money: int = 1400
 var trash_collected: int = 0
 var current_upgrades: Array[int] = []
 
@@ -41,20 +41,14 @@ func collect_trash():
 
 func add_upgrade(upgrade: int):
 	current_upgrades.append(upgrade)
-	print("upgrade ADICIONADO -> ", upgrade)
 	pass
 
-func check_for_upgrade(upgrade: int):
-	if(current_upgrades.find(upgrade) != 1):
-		print("Player POSSUI upgrade")
-	else:
-		print("Player NAO POSSUI upgrade")
+func check_for_upgrade(_upgrade: int):
+	pass
 
 func decrement_boost_quantity():
-	print("decrement boost")
 	boost_quantity -= 1
 	pass
 
 func increment_boost_quantity():
-	print("decrement boost")
 	boost_quantity += 1

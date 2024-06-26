@@ -1,5 +1,5 @@
 class_name Trash
-extends Node2D
+extends RigidBody2D
 
 signal player_entered_interaction_range()
 signal player_left_interaction_range()
@@ -39,30 +39,38 @@ func _physics_process(_delta):
 			if trash_data.is_heavy:
 				global_position.x += 25
 		global_position.y += 28
+		if get_node_or_null("UI_Interact_Button") != null:
+			get_node("UI_Interact_Button").queue_free()
+	else:
+		var on_top: RayCast2D = $TopOfSomething
+		if !on_top.is_colliding():
+			apply_central_force(Vector2(0, 1))
 
 func _on_body_entered(_body):
-	if _body is TileMap:
+	var player: Node2D = get_node_or_null(get_path_to(get_parent()))
+	if _body is StaticBody2D && player is Player && get_node("/root/Game/PlayerData").current_upgrades.find(player.data.Upgrades.STRONG_ARM) == -1:
 		sprite.texture = trash_data.ground_texture
 		player_dropped_trash.emit(self)
 		is_on_ground = true
 	pass
 
 func _on_body_exited(_body):
-	if _body is TileMap:
+	if _body is StaticBody2D:
 		sprite.texture = trash_data.lifted_texture
 		animated_sprite.play("lifted_default")
 		is_on_ground = false
 	pass
 
 func _on_interactable_area_body_entered(_body):
-	if _body is Player:
+	if _body is Player && !_body.carrying_trash:
 		player_entered_interaction_range.emit(self)
 	pass
 
 func _on_interactable_area_body_exited(_body):
-	var player: Player = get_node("/root/Player_")
-	print(player.carrying_trash)
-	if _body is Player && !player.carrying_trash:
-		print("LEFT RANGES")
+	var player: Player = get_node("/root/Game/LevelManager/Level/Player")
+	if _body is Player && !player.carrying_trash && is_inside_tree():
 		player_left_interaction_range.emit(self)
 	pass
+
+func _exit_tree():
+	print("Trash Exiting Tree ")

@@ -23,7 +23,7 @@ func check_direction(player: Player, sprite: Sprite2D, arm: Sprite2D, light: Poi
 		shadow.occluder.polygon = player.data.polygon_right
 	pass
 
-func rise(sprite: Sprite2D, arm: Sprite2D):
+func rise(sprite: Sprite2D, _arm: Sprite2D):
 	if sprite.is_flipped_h():
 		if sprite.rotation_degrees < 15:
 			sprite.rotation_degrees += 1
@@ -31,7 +31,7 @@ func rise(sprite: Sprite2D, arm: Sprite2D):
 		if sprite.rotation_degrees > -15:
 			sprite.rotation_degrees -= 1
 
-func fall(sprite: Sprite2D, arm: Sprite2D):
+func fall(sprite: Sprite2D, _arm: Sprite2D):
 	if !sprite.is_flipped_h():
 		if sprite.rotation_degrees < 15:
 			sprite.rotation_degrees += 1

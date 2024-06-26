@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://by7b81wrb1a8w"]
+
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="1_grump"]
+
+[node name="Loading" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1148.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("1_grump")
+theme_override_font_sizes/font_size = 64
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

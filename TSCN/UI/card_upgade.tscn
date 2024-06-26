@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwydtc77lpj2t"]
+[gd_scene load_steps=12 format=3 uid="uid://bwydtc77lpj2t"]
 
 [ext_resource type="Script" path="res://Scripts/UI/CardUpgrade.gd" id="1_f7rmh"]
 [ext_resource type="Texture2D" uid="uid://ls2giua5mcgv" path="res://Assets/UI/strong-arm-card.png" id="2_orgsu"]
@@ -8,7 +8,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n4p"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(0.8, 0.8, 0.8, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc2ni"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -16,7 +20,7 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.988235, 0.133333, 0, 1)
+border_color = Color(0.8, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hiwb"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -26,7 +30,16 @@ Button/styles/focus = SubResource("StyleBoxFlat_r5n4p")
 Button/styles/hover = SubResource("StyleBoxFlat_fc2ni")
 Button/styles/normal = SubResource("StyleBoxFlat_5hiwb")
 
-[node name="CardUpgade" type="Button"]
+[sub_resource type="InputEventAction" id="InputEventAction_oyvku"]
+resource_local_to_scene = true
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_6jvfr"]
+resource_local_to_scene = true
+events = [SubResource("InputEventAction_oyvku")]
+
+[node name="CardUpgade" type="Button" node_paths=PackedStringArray("shortcut_context")]
 custom_minimum_size = Vector2(267, 350)
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +52,9 @@ grow_vertical = 2
 scale = Vector2(0.99279, 1)
 size_flags_horizontal = 0
 size_flags_vertical = 0
+shortcut_context = NodePath(".")
 theme = SubResource("Theme_ciu6k")
+shortcut = SubResource("Shortcut_6jvfr")
 script = ExtResource("1_f7rmh")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -95,5 +110,6 @@ volume_db = -10.0
 stream = ExtResource("5_7afxo")
 volume_db = -10.0
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

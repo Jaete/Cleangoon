@@ -23,12 +23,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _input(event):
 	if event.is_action_pressed("Interact") && player_on_area:
-		var player: Player = get_node("/root/Player_")
+		var player: Player = get_node("/root/Game/LevelManager/Level/Player")
 		if player.data.current_upgrades.find(player.data.Upgrades.GRASS_CUTTER) != -1:
 			cut_grass()
 		else:
@@ -38,6 +38,7 @@ func _input(event):
 				ui.add_child(cannot_cut)
 
 func cut_grass():
+	
 	sprite.texture = preload("res://Assets/Sprites/Environment/thick-grass-cutted.png")
 	upper_polygon.polygon = preload("res://Resources/Grass/open_upper_shape.tres").segments
 	lower_polygon.polygon = preload("res://Resources/Grass/open_lower_shape.tres").segments

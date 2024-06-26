@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://c4bsu3knqw5q5"]
+
+[ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="1_weokj"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="2_ngiip"]
+[ext_resource type="Script" path="res://Scripts/UI/Restart.gd" id="3_aki1t"]
+[ext_resource type="AudioStream" uid="uid://b13lqavq7whrt" path="res://Assets/Audio/Retro Blop 18.wav" id="4_r7hw7"]
+[ext_resource type="AudioStream" uid="uid://bxyj1w6nkqyki" path="res://Assets/Audio/Retro Blop StereoUP 04.wav" id="5_p4w86"]
+[ext_resource type="Script" path="res://Scripts/UI/Quit.gd" id="6_1ouuk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1jpye"]
+font = ExtResource("2_ngiip")
+font_size = 24
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h6060"]
+texture = ExtResource("1_weokj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7dbn"]
+texture = ExtResource("1_weokj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_db0yf"]
+content_margin_bottom = 5.0
+texture = ExtResource("1_weokj")
+modulate_color = Color(0.364706, 0.458824, 0.94902, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_tmsie"]
+resource_local_to_scene = true
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_f681s"]
+resource_local_to_scene = true
+events = [SubResource("InputEventAction_tmsie")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_2jjvv"]
+resource_local_to_scene = true
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_gfq4s"]
+resource_local_to_scene = true
+events = [SubResource("InputEventAction_2jjvv")]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel03" type="Sprite2D" parent="."]
+position = Vector2(571, 185)
+scale = Vector2(1.51049, 1.51049)
+texture = ExtResource("1_weokj")
+
+[node name="Label" type="Label" parent="MainPanel03"]
+offset_left = -324.0
+offset_top = -109.0
+offset_right = 328.0
+offset_bottom = 94.0
+text = "FIM DE JOGO"
+label_settings = SubResource("LabelSettings_1jpye")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reset" type="Button" parent="." node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 400.0
+offset_right = 442.0
+offset_bottom = 489.0
+focus_neighbor_right = NodePath("../Quit")
+shortcut_context = NodePath(".")
+theme_override_fonts/font = ExtResource("2_ngiip")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_h6060")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x7dbn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_db0yf")
+shortcut = SubResource("Shortcut_f681s")
+text = "REINICIAR"
+script = ExtResource("3_aki1t")
+
+[node name="Hover" type="AudioStreamPlayer" parent="Reset"]
+stream = ExtResource("4_r7hw7")
+volume_db = -20.0
+
+[node name="Click" type="AudioStreamPlayer" parent="Reset"]
+stream = ExtResource("5_p4w86")
+volume_db = -20.0
+
+[node name="Quit" type="Button" parent="." node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 400.0
+offset_right = 952.0
+offset_bottom = 489.0
+focus_neighbor_left = NodePath("../Reset")
+shortcut_context = NodePath(".")
+theme_override_fonts/font = ExtResource("2_ngiip")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_h6060")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x7dbn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_db0yf")
+shortcut = SubResource("Shortcut_gfq4s")
+text = "SAIR"
+script = ExtResource("6_1ouuk")
+
+[node name="Hover" type="AudioStreamPlayer" parent="Quit"]
+stream = ExtResource("4_r7hw7")
+volume_db = -20.0
+
+[node name="Click" type="AudioStreamPlayer" parent="Quit"]
+stream = ExtResource("5_p4w86")
+volume_db = -20.0
+
+[connection signal="mouse_entered" from="Reset" to="Reset" method="_on_mouse_entered"]
+[connection signal="pressed" from="Reset" to="Reset" method="_on_pressed"]
+[connection signal="mouse_entered" from="Quit" to="Quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

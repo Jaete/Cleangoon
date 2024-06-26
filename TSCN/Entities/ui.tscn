@@ -67,16 +67,24 @@ script = ExtResource("5_hg21p")
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelProgress" type="Sprite2D" parent="Control/Counters"]
-position = Vector2(264.371, 69)
-scale = Vector2(0.671329, 0.671329)
+position = Vector2(216.871, 69)
+scale = Vector2(0.9859, 0.671329)
 texture = ExtResource("3_cpx5k")
 
 [node name="Label" type="Label" parent="Control/Counters/LevelProgress"]
-offset_left = -143.0
-offset_top = -19.3646
-offset_right = 145.0
-offset_bottom = 47.6354
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.6
+offset_top = -47.6666
+offset_right = -136.6
+offset_bottom = -78.6666
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.86, 0.86)
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_kx2gd")
 theme_override_font_sizes/font_size = 24
 text = "Coletados: 0"
+vertical_alignment = 1
 script = ExtResource("5_0iit3")

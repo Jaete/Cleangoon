@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Resources/FishData/Behaviour/FishBehaviour.gd" id="1_y1et7"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_y1et7")
 weight = 0.0
 V_MAX_SPEED = 80.0

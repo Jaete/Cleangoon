@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://baed6p1bm8dbo"]
+[gd_scene load_steps=11 format=3 uid="uid://baed6p1bm8dbo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/cannot_buy.gd" id="1_6girb"]
 [ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="1_kjpyb"]
@@ -15,6 +15,17 @@ shadow_offset = Vector2(2, 0)
 Button/font_sizes/font_size = 12
 Button/fonts/font = ExtResource("2_hf60o")
 Button/styles/normal = SubResource("StyleBoxFlat_26gnl")
+
+[sub_resource type="InputEventAction" id="InputEventAction_baggw"]
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_8rak4"]
+action = &"Cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_xj8n6"]
+events = [SubResource("InputEventAction_baggw"), SubResource("InputEventAction_8rak4")]
 
 [node name="CannotBuy" type="Control"]
 layout_mode = 3
@@ -39,12 +50,14 @@ theme_override_fonts/font = ExtResource("2_hf60o")
 theme_override_font_sizes/font_size = 12
 text = "SEM FUNDOS SUFICIENTES"
 
-[node name="OK" type="Button" parent="Background"]
+[node name="OK" type="Button" parent="Background" node_paths=PackedStringArray("shortcut_context")]
 offset_left = -27.0578
 offset_top = 2.08877
 offset_right = 20.9422
 offset_bottom = 48.0888
+shortcut_context = NodePath(".")
 theme = SubResource("Theme_wpmdj")
+shortcut = SubResource("Shortcut_xj8n6")
 text = "OK"
 
 [node name="OK_Audio" type="AudioStreamPlayer" parent="."]

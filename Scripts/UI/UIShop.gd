@@ -19,7 +19,7 @@ var upgrades_available_descriptions: Array[String] = [
 	"Carrega o mais perigoso dos lixos.",
 ]
 
-@onready var player: Player = get_node("/root/Player_")
+@onready var player: Player = get_node("/root/Game/LevelManager/Level/Player")
 @onready var shop: UpgradeShop = get_node("/root/Game/UpgradeShop")
 
 var card_upgrade: PackedScene = preload("res://TSCN/UI/card_upgade.tscn")
@@ -27,6 +27,8 @@ var card_upgrade_ui: CardUpgrade
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var card_index: int = 0
+	var upgrade_cards: Array[CardUpgrade] = []
 	for upgrade in shop.upgrades_available:
 		card_upgrade_ui = card_upgrade.instantiate()
 		card_upgrade_ui.upgrade_id = upgrade
@@ -34,7 +36,19 @@ func _ready():
 		card_upgrade_ui.card_description = upgrades_available_descriptions[upgrade] 
 		card_upgrade_ui.card_price = shop.upgrades_prices[upgrade]
 		card_upgrade_ui.card_clicked.connect(emit_to_manager)
+		upgrade_cards.append(card_upgrade_ui as CardUpgrade)
 		get_node("ScrollContainer/HBoxContainer").add_child(card_upgrade_ui)
+	for card in upgrade_cards:
+		if card_index == 0:
+			card.focus_neighbor_right = upgrade_cards[card_index + 1].get_path()
+			card.call_deferred("grab_focus")
+		elif card_index == upgrade_cards.size() - 1:
+			card.focus_neighbor_left = upgrade_cards[card_index - 1].get_path()
+		else:
+			card.focus_neighbor_left = upgrade_cards[card_index - 1].get_path()
+			card.focus_neighbor_right = upgrade_cards[card_index + 1].get_path()
+		card_index += 1
+	get_node("/root/Game").on_ui = true
 	$Open.play()
 	pass
 
@@ -47,4 +61,5 @@ func _process(_delta):
 	pass
 
 func _exit_tree():
+	get_node("/root/Game").on_ui = false
 	Input.action_release("Rise")

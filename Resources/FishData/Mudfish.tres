@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Resources/FishData/FishData.gd" id="1_8bkfw"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8bkfw")
 salmon = false
 mudfish = true

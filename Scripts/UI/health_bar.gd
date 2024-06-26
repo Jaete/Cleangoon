@@ -1,7 +1,7 @@
 class_name HealthBar
 extends TextureProgressBar
 
-@onready var player: Player = get_node("/root/Player_")
+@onready var player: Player = get_node("/root/Game/LevelManager/Level/Player")
 @onready var health_manager: HealthManager = get_node("/root/Game/HealthManager")
 
 # Called when the node enters the scene tree for the first time.

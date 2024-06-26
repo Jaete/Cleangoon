@@ -1,20 +1,50 @@
-[gd_scene load_steps=11 format=3 uid="uid://b135hdmjeq370"]
+[gd_scene load_steps=17 format=3 uid="uid://b135hdmjeq370"]
 
 [ext_resource type="Script" path="res://Scripts/UI/confirm_buy.gd" id="1_kypvq"]
 [ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="1_t5knk"]
 [ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="2_ti1hq"]
 [ext_resource type="AudioStream" uid="uid://bxyj1w6nkqyki" path="res://Assets/Audio/Retro Blop StereoUP 04.wav" id="4_lgnri"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kd6bi"]
+bg_color = Color(0.819608, 0.611765, 0.294118, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.729412, 0, 0, 1)
+shadow_offset = Vector2(2, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26gnl"]
 content_margin_top = 12.0
 bg_color = Color(0.819608, 0.611765, 0.294118, 1)
-shadow_size = 5
 shadow_offset = Vector2(2, 0)
 
 [sub_resource type="Theme" id="Theme_wpmdj"]
 Button/font_sizes/font_size = 12
 Button/fonts/font = ExtResource("2_ti1hq")
+Button/styles/focus = SubResource("StyleBoxFlat_kd6bi")
 Button/styles/normal = SubResource("StyleBoxFlat_26gnl")
+
+[sub_resource type="InputEventAction" id="InputEventAction_3lvrm"]
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_1r1jp"]
+events = [SubResource("InputEventAction_3lvrm")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_jtmac"]
+resource_local_to_scene = true
+action = &"Cancel"
+pressed = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_ar7qw"]
+resource_local_to_scene = true
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_y13kn"]
+resource_local_to_scene = true
+events = [SubResource("InputEventAction_jtmac"), SubResource("InputEventAction_ar7qw")]
 
 [sub_resource type="Animation" id="Animation_vo53r"]
 resource_name = "Grow"
@@ -131,22 +161,28 @@ theme_override_fonts/font = ExtResource("2_ti1hq")
 theme_override_font_sizes/font_size = 12
 text = "CONFIRMAR A COMPRA?"
 
-[node name="Yes" type="Button" parent="Background"]
+[node name="Yes" type="Button" parent="Background" node_paths=PackedStringArray("shortcut_context")]
 offset_left = -94.2632
 offset_top = -5.57506
 offset_right = -30.2632
 offset_bottom = 42.4249
+focus_neighbor_right = NodePath("../No")
+shortcut_context = NodePath(".")
 theme = SubResource("Theme_wpmdj")
 theme_override_font_sizes/font_size = 0
+shortcut = SubResource("Shortcut_1r1jp")
 text = "SIM
  "
 
-[node name="No" type="Button" parent="Background"]
+[node name="No" type="Button" parent="Background" node_paths=PackedStringArray("shortcut_context")]
 offset_left = 33.0
 offset_top = -6.0
 offset_right = 97.0
 offset_bottom = 42.0
+focus_neighbor_left = NodePath("../Yes")
+shortcut_context = NodePath(".")
 theme = SubResource("Theme_wpmdj")
+shortcut = SubResource("Shortcut_y13kn")
 text = "NÃO
  "
 

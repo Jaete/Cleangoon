@@ -1,12 +1,14 @@
 extends Control
 
 signal player_bought
+signal player_canceled()
 
 var price: int
 var upgrade_id: int
 
 func _ready():
 	$AnimationPlayer.play("Grow")
+	$Background/Yes.grab_focus()
 
 func _on_yes_pressed():
 	$ConfirmBuy.play()
@@ -27,5 +29,12 @@ func close():
 	$AnimationPlayer.play("Shrink")
 	await($AnimationPlayer.animation_finished)
 	visible = false
-	await($OK_Audio.finished)
+	var shop: UpgradeShop = get_node("/root/Game/UpgradeShop")
+	shop.opened_card = false
+	player_canceled.emit()
+	await($ConfirmBuy.finished)
 	queue_free()
+
+func _input(event):
+	if event.is_action_pressed("Cancel"):
+		close()

@@ -4,9 +4,10 @@
 
 [resource]
 script = ExtResource("1_qnlyj")
-polygon_left = PackedVector2Array(-128, 82, -10, 13, -10, 7, -132, -44)
-polygon_right = PackedVector2Array(128, 82, 10, 13, 10, 7, 132, -44)
+polygon_left = PackedVector2Array(-190, 108, -10, 13, -10, 7, -190, -67)
+polygon_right = PackedVector2Array(190, 108, 10, 13, 10, 7, 190, -67)
 light_left = Vector2(-16, 12)
 light_right = Vector2(16, 12)
 boost_time = 0.5
 boost_recovery = 4.0
+money = 1400

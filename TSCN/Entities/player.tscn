@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cytg6jnj3iky4"]
+[gd_scene load_steps=26 format=3 uid="uid://cytg6jnj3iky4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_ho8sk"]
 [ext_resource type="Resource" uid="uid://502osudyjdp8" path="res://Resources/PlayerPhysics/PlayerPhysics.tres" id="2_02aco"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/DEBUG/Label.gd" id="3_asste"]
 [ext_resource type="Resource" uid="uid://3bcj6bpysgo7" path="res://Resources/PlayerController/PlayerController.tres" id="3_vg3af"]
 [ext_resource type="Resource" uid="uid://bjvg66l47ddex" path="res://Resources/AnimationHelper/AnimationHelper.tres" id="4_rrypg"]
-[ext_resource type="Resource" uid="uid://cg5bhkxvsmw8h" path="res://Resources/PlayerData/PlayerData.tres" id="5_74pwt"]
 [ext_resource type="AudioStream" uid="uid://c7xqexlv33gr6" path="res://Assets/Audio/Retro Impact Metal 36.wav" id="8_7mva0"]
 [ext_resource type="Texture2D" uid="uid://bnfyvc4e4fahb" path="res://Assets/Sprites/Player/strong-arm.png" id="9_3gdk8"]
+[ext_resource type="AudioStream" uid="uid://btlgxibovvk1b" path="res://Assets/Audio/Vehicle_Car_Engine_1000_RPM_Front_Exterior_Loop_Mono.wav" id="9_5imk3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4xc7"]
 friction = 0.5
@@ -129,134 +129,6 @@ tracks/6/path = NodePath("Strong-arm:flip_h")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_8o6a1"]
-resource_name = "rise_left"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.261799]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Strong-arm:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-28, 1), Vector2(-30, -3)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Strong-arm:flip_h")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Strong-arm:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.426569]
-}
-
-[sub_resource type="Animation" id="Animation_4grtx"]
-resource_name = "rise_right"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.261799]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Strong-arm:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.555304]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Strong-arm:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(7, 12), Vector2(10, 8)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Strong-arm:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -391,6 +263,134 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_8o6a1"]
+resource_name = "rise_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.261799]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Strong-arm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-28, 1), Vector2(-30, -3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Strong-arm:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Strong-arm:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.426569]
+}
+
+[sub_resource type="Animation" id="Animation_4grtx"]
+resource_name = "rise_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Strong-arm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.555304]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Strong-arm:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7, 12), Vector2(10, 8)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Strong-arm:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cgvlm"]
 _data = {
 "Blink_Red": SubResource("Animation_g1nhb"),
@@ -401,25 +401,67 @@ _data = {
 "rise_right": SubResource("Animation_4grtx")
 }
 
-[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("sprite", "strong_arm", "anim_player")]
+[sub_resource type="Gradient" id="Gradient_mkkqx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b6fyd"]
+gradient = SubResource("Gradient_mkkqx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tcuqo"]
+closed = false
+cull_mode = 2
+polygon = PackedVector2Array(190, 108, 10, 13, 10, 7, 190, -67)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eaqap"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2.025, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 11.72
+gravity = Vector3(0, -126, 0)
+scale_min = 0.0
+scale_max = 0.2
+color = Color(0.298039, 1, 1, 0.541176)
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.41
+
+[sub_resource type="Gradient" id="Gradient_4alan"]
+offsets = PackedFloat32Array(0.0454545, 0.324675, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.938776, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_txeml"]
+gradient = SubResource("Gradient_4alan")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.1)
+metadata/_snap_enabled = true
+
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("recovery_timer", "boost_time", "sprite", "strong_arm", "anim_player", "lantern_light", "lantern_occlusion")]
 physics_material_override = SubResource("PhysicsMaterial_k4xc7")
 lock_rotation = true
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_ho8sk")
 physics = ExtResource("2_02aco")
+recovery_timer = NodePath("Recovery")
+boost_time = NodePath("Boost")
 controller = ExtResource("3_vg3af")
 animation = ExtResource("4_rrypg")
 sprite = NodePath("Sprite2D")
 strong_arm = NodePath("Strong-arm")
 anim_player = NodePath("AnimationPlayer")
-data = ExtResource("5_74pwt")
+lantern_light = NodePath("Lantern/PointLight2D")
+lantern_occlusion = NodePath("Lantern/LightOccluder2D")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
 shape = SubResource("CircleShape2D_cvl24")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 texture = ExtResource("2_kb6fu")
 offset = Vector2(0, 0.905)
@@ -457,10 +499,53 @@ stream = ExtResource("8_7mva0")
 
 [node name="Strong-arm" type="Sprite2D" parent="."]
 visible = false
+z_index = 3
 position = Vector2(-30, -3)
 rotation = -0.555304
 texture = ExtResource("9_3gdk8")
 centered = false
 
+[node name="Recovery" type="Timer" parent="."]
+
+[node name="Boost" type="Timer" parent="."]
+
+[node name="Lantern" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Lantern"]
+position = Vector2(1.00002, 7.5)
+scale = Vector2(15.2813, 6.67188)
+energy = 0.4
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1
+shadow_filter_smooth = 20.2
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_b6fyd")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Lantern"]
+occluder = SubResource("OccluderPolygon2D_tcuqo")
+occluder_light_mask = 2
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5imk3")
+volume_db = -10.0
+pitch_scale = 0.8
+
+[node name="Engine2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5imk3")
+volume_db = -10.0
+pitch_scale = 0.46
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-2, 36)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_eaqap")
+texture = SubResource("GradientTexture2D_txeml")
+draw_order = 0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Recovery" to="." method="_on_recovery_timeout"]
+[connection signal="timeout" from="Boost" to="." method="_on_boost_timeout"]

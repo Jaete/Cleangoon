@@ -1,7 +1,15 @@
 class_name Fish
 extends RigidBody2D
 
-@onready var teste = $Teste
+@onready var down_ray: RayCast2D = $Down
+@onready var top_ray: RayCast2D = $Top
+@onready var left_ray: RayCast2D = $Left
+@onready var right_ray: RayCast2D = $Right
+
+@onready var return_left: RayCast2D = $ReturnWallDetect/ReturnLeft
+@onready var return_right: RayCast2D = $ReturnWallDetect/ReturnRight
+@onready var return_top: RayCast2D = $ReturnWallDetect/ReturnTop
+@onready var return_down = $ReturnWallDetect/ReturnDown
 
 @export_category("Data")
 @export var fish_data: FishData
@@ -41,7 +49,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if behaviour.triggered:
-		behaviour.follow(self, get_node("/root/Player_").global_position)
+		behaviour.follow(self, get_node("/root/Game/LevelManager/Level/Player").global_position)
 	if behaviour.returning_to_spawn && !behaviour.triggered:
 		behaviour.follow(self, behaviour.spawn_point)
 		behaviour.spawn_point_reached(self)
@@ -71,24 +79,89 @@ func _on_sight_left(body):
 	pass
 
 func detect(body):
-	if body is Player && !behaviour.returning_to_spawn:
+	if body is Player && !behaviour.returning_to_spawn && !$Top.get_collider() is StaticBody2D:
 		behaviour.wandering = false
 		behaviour.triggered = true
 		behaviour.target = body
-	if body is StaticBody2D && !behaviour.triggered:
-		behaviour.wander_direction *= -1
-		behaviour.turn.emit(self)
-		flipping = true
-
-
+	#if body is StaticBody2D && !behaviour.triggered:
+		#behaviour.wander_direction *= -1
+		#behaviour.turn.emit(self)
+		#flipping = true
 
 func _on_body_entered(body):
 	if body is Player:
 		behaviour.wandering = false
 		behaviour.triggered = true
 		behaviour.target = body
-	if body is StaticBody2D:
+	if body is StaticBody2D && behaviour.returning_to_spawn:
+		$StuckTimer.start()
+	pass
+
+func _on_right_collided(collider):
+	turn(collider)
+	pass
+
+func _on_left_collided(collider):
+	turn(collider)
+	pass
+
+func turn(collider):
+	if (collider is StaticBody2D || collider is Trash) && !behaviour.triggered:
 		behaviour.wander_direction *= -1
 		behaviour.turn.emit(self)
 		flipping = true
+
+
+func _on_wall_detect_body_entered(body):
+	if !body is Player:
+		if body is StaticBody2D || body is Trash && !behaviour.triggered && behaviour.returning_to_spawn:
+			behaviour.near_object = true
+	pass # Replace with function body.
+
+
+func _on_wall_detect_body_exited(body):
+	if body is StaticBody2D || body is Trash && !behaviour.triggered && behaviour.returning_to_spawn:
+		behaviour.near_object = false
+	pass # Replace with function body.
+
+func _on_return_left_collided(collider):
+	if collider is StaticBody2D || collider is Trash:
+		behaviour.wall_on_right = true
+
+func _on_return_right_collided(collider):
+	if collider is StaticBody2D || collider is Trash:
+		behaviour.wall_on_left = true
+
+func _on_return_right_stop_colliding():
+	behaviour.wall_on_right = false
+
+func _on_return_left_stop_colliding():
+	behaviour.wall_on_left = false
+
+
+
+func _on_return_down_stop_colliding():
+	behaviour.cannot_go_down = false
+	pass # Replace with function body.
+
+
+func _on_return_down_collided(collider):
+	if collider is StaticBody2D:
+		behaviour.cannot_go_down = true
+	pass # Replace with function body.
+
+
+func _on_return_top_collided(collider):
+	if collider is StaticBody2D:
+		behaviour.cannot_go_down = true
+	pass # Replace with function body.
+
+
+func _on_return_top_stop_colliding():
+	behaviour.cannot_go_down = false
+	pass # Replace with function body.
+
+func _on_stuck_timer_timeout():
+	global_position = behaviour.spawn_point
+	behaviour.spawn_point_reached(self)
 	pass # Replace with function body.

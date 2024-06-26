@@ -79,7 +79,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area") groups=["Trash"]]
+[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area")]
 y_sort_enabled = true
 mass = 0.1
 gravity_scale = 0.3
@@ -94,6 +94,7 @@ physics_body = NodePath(".")
 interactable_area = NodePath("InteractableArea/Shape")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
 
 [node name="InteractableArea" type="Area2D" parent="."]
 
@@ -105,8 +106,13 @@ shape = SubResource("RectangleShape2D_t78b2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_r2eph")
 animation = &"lifted_default"
+
+[node name="TopOfSomething" type="RayCast2D" parent="."]
+target_position = Vector2(0, 27)
+hit_from_inside = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

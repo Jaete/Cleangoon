@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf54ee3byhi0s"]
+
+[ext_resource type="Texture2D" uid="uid://bmsmenlkchl6l" path="res://Assets/UI/Ind_Stamina_pip.png" id="1_1q72n"]
+
+[node name="StaminaPip" type="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 8
+
+[node name="IndStaminaPip" type="Sprite2D" parent="."]
+rotation = 0.523599
+scale = Vector2(2.92, 2.88)
+texture = ExtResource("1_1q72n")
+centered = false

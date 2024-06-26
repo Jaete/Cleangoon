@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bljlt84epy8qa"]
+
+[node name="Soundtrack" type="AudioStreamPlayer"]
+volume_db = -20.0

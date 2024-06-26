@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c461p4lw5q1t7"]
+
+[ext_resource type="Script" path="res://Scripts/UpgradeShop/UpgradeShop.gd" id="1_81tk0"]
+[ext_resource type="AudioStream" uid="uid://chaq3ets2t0i3" path="res://Assets/Audio/Retro HiTech 08.wav" id="2_m7a4v"]
+
+[node name="UpgradeShop" type="Node"]
+script = ExtResource("1_81tk0")
+
+[node name="UpgradeBought" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_m7a4v")
+volume_db = -10.0

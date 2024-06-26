@@ -13,6 +13,8 @@ var horizonal_movement: int = 0
 var input_action: int = 0
 var is_boosting: bool = false
 
+var is_joypad_active: bool = false
+
 func get_input():
 	check_boost()
 	get_vertical_movement()
@@ -37,7 +39,7 @@ func get_horizontal_movement():
 		horizonal_movement = STOP
 
 func check_boost():
-	if Input.is_action_pressed("Boost"):
+	if Input.is_action_just_pressed("Boost"):
 		is_boosting = true
 	else:
 		is_boosting = false
@@ -53,3 +55,7 @@ func check_for_action():
 	else:
 		input_action = STOP
 	pass
+
+func joypad_active():
+	if Input.get_connected_joypads().size() != 0:
+		is_joypad_active = true

@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://du2g8nkjk8nlr"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UIShop.gd" id="1_yw8yd"]
+[ext_resource type="Texture2D" uid="uid://dbrqr2s8uc21j" path="res://Assets/UI/MainPanel03.png" id="2_cs8w3"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="3_qtj27"]
+[ext_resource type="AudioStream" uid="uid://wgp178w170ho" path="res://Assets/Audio/Retro Event Complex 03.wav" id="4_twa11"]
+
+[node name="ShopUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yw8yd")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(574, 322.75)
+scale = Vector2(3.78146, 4.42308)
+texture = ExtResource("2_cs8w3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -321.0
+offset_top = 50.0
+offset_right = 321.0
+offset_bottom = 163.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_qtj27")
+theme_override_font_sizes/normal_font_size = 48
+text = "COMPRE UM APRIMORAMENTO"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 188.0
+offset_right = 1117.0
+offset_bottom = 608.0
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_twa11")
+volume_db = -35.0

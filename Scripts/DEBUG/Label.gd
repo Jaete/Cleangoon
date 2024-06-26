@@ -2,6 +2,6 @@ extends Label
 
 @onready var pl: Player = $"../.."
 
-func _process(delta):
-	set_text(str("Jumping: ", Input.is_action_pressed("Rise"),
-	"\ncarring?: ", pl.carrying_trash))
+func _process(_delta):
+	set_text(str("player velocity: ", pl.linear_velocity.x,
+	"\nmax speed: ", pl.physics.H_MAX_SPEED))

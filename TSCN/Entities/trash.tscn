@@ -1,13 +1,85 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctv4ao3whr30o"]
+[gd_scene load_steps=15 format=3 uid="uid://ctv4ao3whr30o"]
 
 [ext_resource type="Script" path="res://Scripts/Trash/Trash.gd" id="1_n1lpt"]
+[ext_resource type="Texture2D" uid="uid://85erut4ioru2" path="res://Assets/Sprites/Trash/uranium.png" id="2_8tvjw"]
+[ext_resource type="Texture2D" uid="uid://c76pbi30prvh0" path="res://Assets/Sprites/Trash/uranium-raw.png" id="2_lbi7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncx3a"]
 radius = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t78b2"]
+size = Vector2(25, 25)
 
-[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "body", "physics_body", "interactable_area") groups=["Trash"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_77ebb"]
+atlas = ExtResource("2_lbi7x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky7fq"]
+atlas = ExtResource("2_lbi7x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7pbw"]
+atlas = ExtResource("2_lbi7x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icls6"]
+atlas = ExtResource("2_lbi7x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqd05"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o1da"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqqv0"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3gq2"]
+atlas = ExtResource("2_8tvjw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2eph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77ebb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky7fq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7pbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icls6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqd05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o1da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqqv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3gq2")
+}],
+"loop": true,
+"name": &"lifted_default",
+"speed": 5.0
+}]
+
+[node name="Trash" type="RigidBody2D" node_paths=PackedStringArray("sprite", "animated_sprite", "body", "physics_body", "interactable_area")]
 y_sort_enabled = true
 mass = 0.1
 gravity_scale = 0.3
@@ -16,11 +88,13 @@ max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_n1lpt")
 sprite = NodePath("Sprite")
+animated_sprite = NodePath("AnimatedSprite2D")
 body = NodePath("BodyShape")
 physics_body = NodePath(".")
 interactable_area = NodePath("InteractableArea/Shape")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
 
 [node name="InteractableArea" type="Area2D" parent="."]
 
@@ -29,6 +103,16 @@ shape = SubResource("CircleShape2D_ncx3a")
 
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t78b2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_r2eph")
+animation = &"lifted_default"
+
+[node name="TopOfSomething" type="RayCast2D" parent="."]
+target_position = Vector2(0, 27)
+hit_from_inside = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwydtc77lpj2t"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CardUpgrade.gd" id="1_f7rmh"]
+[ext_resource type="Texture2D" uid="uid://ls2giua5mcgv" path="res://Assets/UI/strong-arm-card.png" id="2_orgsu"]
+[ext_resource type="FontFile" uid="uid://b274miqgbr5yc" path="res://Assets/Fonts/PublicPixel.ttf" id="3_11p5j"]
+[ext_resource type="AudioStream" uid="uid://b13lqavq7whrt" path="res://Assets/Audio/Retro Blop 18.wav" id="4_l7dlg"]
+[ext_resource type="AudioStream" uid="uid://bxyj1w6nkqyki" path="res://Assets/Audio/Retro Blop StereoUP 04.wav" id="5_7afxo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n4p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc2ni"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hiwb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_ciu6k"]
+Button/styles/focus = SubResource("StyleBoxFlat_r5n4p")
+Button/styles/hover = SubResource("StyleBoxFlat_fc2ni")
+Button/styles/normal = SubResource("StyleBoxFlat_5hiwb")
+
+[sub_resource type="InputEventAction" id="InputEventAction_oyvku"]
+resource_local_to_scene = true
+action = &"Confirm"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_6jvfr"]
+resource_local_to_scene = true
+events = [SubResource("InputEventAction_oyvku")]
+
+[node name="CardUpgade" type="Button" node_paths=PackedStringArray("shortcut_context")]
+custom_minimum_size = Vector2(267, 350)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+offset_right = -885.0
+offset_bottom = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.99279, 1)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+shortcut_context = NodePath(".")
+theme = SubResource("Theme_ciu6k")
+shortcut = SubResource("Shortcut_6jvfr")
+script = ExtResource("1_f7rmh")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(132.455, 176.5)
+scale = Vector2(2.79187, 2.64844)
+texture = ExtResource("2_orgsu")
+
+[node name="CardName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 197.0
+offset_right = 259.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 14
+text = "teste"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="CardDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 241.0
+offset_right = 252.0
+offset_bottom = 329.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 12
+text = "teste"
+autowrap_mode = 3
+uppercase = true
+
+[node name="CardPrice" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 311.0
+offset_right = 251.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11p5j")
+theme_override_font_sizes/font_size = 12
+text = "teste"
+autowrap_mode = 3
+uppercase = true
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l7dlg")
+volume_db = -10.0
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7afxo")
+volume_db = -10.0
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

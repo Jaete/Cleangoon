@@ -1,0 +1,244 @@
+[gd_scene load_steps=22 format=3 uid="uid://b0ihobwpbq8jg"]
+
+[ext_resource type="Script" path="res://Scripts/Grass/grass.gd" id="1_8wha0"]
+[ext_resource type="Texture2D" uid="uid://dugju7t4jbli7" path="res://Assets/Sprites/Environment/thick-grass.png" id="1_w5fjo"]
+[ext_resource type="Texture2D" uid="uid://k074d4ytuyhd" path="res://Assets/Sprites/Animations/SFX304_01.png" id="3_xxknh"]
+[ext_resource type="Texture2D" uid="uid://cv3bn6wlfpa36" path="res://Assets/Sprites/Animations/SFX304_02.png" id="4_wrdkx"]
+[ext_resource type="Texture2D" uid="uid://cmic88havcxm1" path="res://Assets/Sprites/Animations/SFX304_03.png" id="5_yiiqi"]
+[ext_resource type="Texture2D" uid="uid://bl541rvy1bsp0" path="res://Assets/Sprites/Animations/SFX304_04.png" id="6_ea5kw"]
+[ext_resource type="Texture2D" uid="uid://baekw1v0sxhsl" path="res://Assets/Sprites/Animations/SFX304_05.png" id="7_wwb77"]
+[ext_resource type="Texture2D" uid="uid://dewa6aq0w5tof" path="res://Assets/Sprites/Animations/leaf.png" id="8_qy26u"]
+[ext_resource type="AudioStream" uid="uid://bu6yeyktbgd53" path="res://Assets/Audio/BladeSwing.wav" id="9_7vjwm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dskho"]
+radius = 47.0956
+
+[sub_resource type="Animation" id="Animation_ovgi1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Slash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cut:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kqrj4"]
+resource_name = "Slash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Slash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cut:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrr4n"]
+_data = {
+"RESET": SubResource("Animation_ovgi1"),
+"Slash": SubResource("Animation_kqrj4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iurvj"]
+atlas = ExtResource("3_xxknh")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8fvr"]
+atlas = ExtResource("4_wrdkx")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbl5p"]
+atlas = ExtResource("5_yiiqi")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijvhw"]
+atlas = ExtResource("6_ea5kw")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qygyh"]
+atlas = ExtResource("7_wwb77")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c14qv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iurvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8fvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbl5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijvhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qygyh")
+}],
+"loop": false,
+"name": &"Slash",
+"speed": 5.0
+}]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_weihw"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q2dvb"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 20.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 10.0
+direction = Vector3(1, 1, 0)
+spread = 23.462
+initial_velocity_min = 59.83
+initial_velocity_max = 94.02
+angular_velocity_min = 160.0
+angular_velocity_max = 160.0
+directional_velocity_min = -124.0
+directional_velocity_max = 124.08
+directional_velocity_curve = SubResource("CurveXYZTexture_weihw")
+orbit_velocity_min = -1.537
+orbit_velocity_max = 1.13
+radial_velocity_min = -564.1
+radial_velocity_max = 222.22
+gravity = Vector3(0, 64, 0)
+radial_accel_min = -47.38
+radial_accel_max = 42.73
+tangential_accel_min = -48.82
+tangential_accel_max = 52.33
+damping_min = 15.385
+damping_max = 15.385
+turbulence_enabled = true
+turbulence_noise_speed_random = 1.37
+
+[node name="Grass" type="StaticBody2D" node_paths=PackedStringArray("upper_polygon", "lower_polygon", "interaction_area", "sprite")]
+script = ExtResource("1_8wha0")
+upper_polygon = NodePath("Upper")
+lower_polygon = NodePath("Lower")
+interaction_area = NodePath("GrassInteraction")
+sprite = NodePath("Thick-grass")
+
+[node name="Thick-grass" type="Sprite2D" parent="."]
+texture = ExtResource("1_w5fjo")
+
+[node name="GrassInteraction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrassInteraction"]
+shape = SubResource("CircleShape2D_dskho")
+
+[node name="Upper" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -44, -20, -30, 21, -30, 21, -44)
+
+[node name="Lower" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, 29, -20, 45, 21, 45, 21, 29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nrr4n")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 3)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_c14qv")
+animation = &"Slash"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_q2dvb")
+texture = ExtResource("8_qy26u")
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.35
+
+[node name="Cut" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7vjwm")
+
+[connection signal="body_entered" from="GrassInteraction" to="." method="_on_grass_interaction_body_entered"]
+[connection signal="body_exited" from="GrassInteraction" to="." method="_on_grass_interaction_body_exited"]
